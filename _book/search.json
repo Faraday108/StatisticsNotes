@@ -1,0 +1,52 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "StatisticsGuidedNotes",
+    "section": "",
+    "text": "Preface\nIn this document, I have worked to create a guided set of notes to aid in an efficient use of class time. Who loves writing exhaustive definitions in a notebook or copying figures when instead we could have an already prepared framework to speed note taking of important concepts?\nI’m starting this in the middle of a school year, having recently come back from paternity leave so the beginning of this book will need to be updated later. Instead, I’ll begin with the section we are examining currently - the beginning of Chapter 5 - Continuous Random Variables.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "5.0Introduction.html",
+    "href": "5.0Introduction.html",
+    "title": "1  Chapter 5 Introduction",
+    "section": "",
+    "text": "1.1 Quick Facts\nIn general, calculus is required to find the area under a curve; to keep this course at a pre-calculus level we will focus on focus on geometry, formulas, or technology to find area. There are many continuous probability distributions that fit different situations best. We will discuss the normal, exponential, and uniform distributions and work example problems from the uniform distribution.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 5 Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "5.0Introduction.html#quick-facts",
+    "href": "5.0Introduction.html#quick-facts",
+    "title": "1  Chapter 5 Introduction",
+    "section": "",
+    "text": "The graph of a continuous probability distribution is a curve.\nProbability is area under the curve\nCurve is called the probability density function or pdf and is represented by \\(f(x)\\).\nArea under the curve is given by a different function called cumulative distribution function or cdf and evaluates probability as area.\nOutcomes are measured, not counted\nArea under curve and above x-axis is 1\nProbability is found for intervals of \\(x\\) values\n\\(P(c&lt;x&lt;d)\\): Probability that random variable \\(X\\) is in interval and found as area under curve from \\(x\\) = \\(c\\) to \\(d\\)\n\\(P(x=c) = 0\\): Probability of any single value is 0. The area under the curve has no width at a single point.\n\\(P(c\\le x \\le d)\\) is the same as \\(P(c &lt; x&lt;d)\\)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Chapter 5 Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "5.1ContinuousProbabilityFunctions.html",
+    "href": "5.1ContinuousProbabilityFunctions.html",
+    "title": "5.1 - Continuous Probability Functions",
+    "section": "",
+    "text": "Example 5.1\nConsider the function \\(f(x) = 1/20\\) for \\(0 \\le x \\le 20\\) where \\(x\\) is a real number.\nFigure 1: f(x) = 1/20\nThe area under the curve for this function is the area of a rectangle: \\(Area = b \\times h = 20 \\times \\frac{1}{20} = 1\\) So the total probability is 1. We can now find the probability of ranges of \\(x\\)-values as the area of different rectangles under the curve.\nSuppose we want to find the area instead where \\(0&lt;x&lt;3\\) instead:\nFigure 2: f(x) = 1/20 with limited domain\nAs you can see in Figure 2, the shaded region is a rectangle with base 3 (\\(0 - 3\\)) and height \\(\\frac{1}{20}\\) and \\(Area = 3 \\cdot \\frac{1}{20} = \\frac{3}{20} = .15\\)\nThis area corresponds to probability \\(P(0&lt;x&lt;3) = 0.15\\)\nSimilarly, suppose we want to find the area where \\(4&lt;x&lt;15\\):\nFigure 3: f(x) = 1/20 with limited domain\nFrom Figure 3, the shaded region is a rectangle with base 11 (\\(15 - 4\\)) and height \\(\\frac{1}{20}\\) and \\(Area = 11 \\cdot \\frac{1}{20} = \\frac{11}{20} = .55\\).\nThis area corresponds to probability \\(P(4&lt;x&lt;15) = 0.55\\)",
+    "crumbs": [
+      "5.1 - Continuous Probability Functions"
+    ]
+  },
+  {
+    "objectID": "5.1ContinuousProbabilityFunctions.html#example-5.1",
+    "href": "5.1ContinuousProbabilityFunctions.html#example-5.1",
+    "title": "5.1 - Continuous Probability Functions",
+    "section": "",
+    "text": "Cumulative Distribution Function (CDF)\n\\(P(X \\le x)\\) is called the Cumulative Distribution Function or CDF. This is the probability that \\(X\\) is less than \\(x\\). CDF gives the area to the left and \\(P(X &gt; x)\\) gives area to the right. These are related as: \\(P(X&gt;x) = 1-P(X&lt;x)\\)\n\n\nQuestion:\nWhat is the probability that \\(x\\) takes a value between 2.3 and 12.7?\n\n\n\n\n\n\n\n\n\n\nQuestion:\nConsider the function \\(f(x) = 1/6\\) for \\(0 \\le x \\le 6\\). Draw the graph of \\(f(x)\\) and find \\(P(2.5 \\le x \\le 5.5)\\)",
+    "crumbs": [
+      "5.1 - Continuous Probability Functions"
+    ]
+  }
+]

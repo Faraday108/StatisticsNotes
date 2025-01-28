@@ -3,15 +3,14 @@ project:
 
 book:
   title: "StatisticsGuidedNotes"
-  author: "Norah Jones"
+  author: "Nathan Young"
   date: "1/27/2025"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - 5.0Introduction.qmd
+    - 5.1ContinuousProbabilityFunctions.qmd
 
-bibliography: references.bib
+# bibliography: references.bib
 
 format:
   html:

@@ -1,9 +1,5 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+In this document, I have worked to create a guided set of notes to aid in an efficient use of class time. Who loves writing exhaustive definitions in a notebook or copying figures when instead we could have an already prepared framework to speed note taking of important concepts?
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r}
-1 + 1
-```
+I'm starting this in the middle of a school year, having recently come back from paternity leave so the beginning of this book will need to be updated later. Instead, I'll begin with the section we are examining currently - the beginning of **Chapter 5 - Continuous Random Variables**.

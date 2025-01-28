@@ -1,0 +1,18 @@
+# Chapter 5 Introduction
+
+Continuous random variables have many applications: IQ scores, length of phone calls, money a person carries, time a computer chip lasts, SAT scores. 
+
+## Quick Facts
+
+* The graph of a continuous probability distribution is a curve. 
+* Probability is area under the curve
+* Curve is called the **probability density function** or **pdf** and is represented by $f(x)$. 
+* **Area under the curve** is given by a different function called **cumulative distribution function** or **cdf** and evaluates probability as area. 
+* Outcomes are measured, not counted
+* Area under curve and above x-axis is 1
+* Probability is found for intervals of $x$ values
+* $P(c<x<d)$: Probability that random variable $X$ is in interval and found as area under curve from $x$ = $c$ to $d$
+* $P(x=c) = 0$: Probability of any single value is 0. The area under the curve has no width at a single point. 
+* $P(c\le x \le d)$ is the same as $P(c < x<d)$
+
+In general, calculus is required to find the area under a curve; to keep this course at a pre-calculus level we will focus on focus on geometry, formulas, or technology to find area. There are many continuous probability distributions that fit different situations best. We will discuss the normal, exponential, and uniform distributions and work example problems from the uniform distribution. 
