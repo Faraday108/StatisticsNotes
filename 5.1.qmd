@@ -1,18 +1,18 @@
-# 5.1 - Continuous Probability Functions {.unnumbered}
+# 5.1 Continuous Probability Functions
 
--   Defined as a continuous function $f(x)$
+-   Defined as a continuous function $f(x)$ such as a uniform, exponential, or normal function.
 -   Functions are defined so that the area between the function and the $x$-axis is equal to a probability.
-    -   Since max probability is 1, the area under the curve must be 1. 
+    -   Since max probability is 1, the area under the curve must be 1.
 -   **Remember, for continuous probability functions, PROBABILITY = AREA**
 
 ## Examples
 
-Consider the function $f(x) = 1/20$ for $0 \le x \le 20$ where $x$ is a real number. 
+Consider the function $f(x) = 1/20$ for $0 \le x \le 20$ where $x$ is a real number.
 
 ```{r}
 #| echo: false
 #| label: fig-plot1
-#| fig-cap: "f(x) = 1/20"
+#| fig-cap: "$f(x) = 1/20$"
 #| fig-width: 4
 #| fig-height: 3
 #| message: false
@@ -33,16 +33,15 @@ ggplot() +
     scale_x_continuous(breaks = c(0, 20))
 ```
 
-The area under the curve for this function is the area of a rectangle: $Area = b \times h = 20 \times \frac{1}{20} = 1$ 
-So the total probability is 1. We can now find the probability of *ranges* of $x$-values as the area of different rectangles under the curve. 
+The area under the curve for this function is the area of a rectangle: $Area = b \times h = 20 \times \frac{1}{20} = 1$ So the total probability is 1. We can now find the probability of *ranges* of $x$-values as the area of different rectangles under the curve.
 
-**Suppose we want to find the area instead where $0<x<3$ instead: **
+**Suppose we want to find the area instead where** $0<x<3$ instead:
 
 ```{r}
 #| label: fig-plot2
 #| echo: false
 #| message: false
-#| fig-cap: f(x) = 1/20 with limited domain
+#| fig-cap: "$f(x) = 1/20 \\text{ for } 0 \\leq x \\leq 3$"
 #| fig-height: 3
 #| fig-width: 4
 
@@ -62,13 +61,13 @@ As you can see in @fig-plot2, the shaded region is a rectangle with base 3 ($0 -
 
 This area corresponds to probability $P(0<x<3) = 0.15$
 
-**Similarly, suppose we want to find the area where $4<x<15$: **
+**Similarly, suppose we want to find the area where** $4<x<15$:
 
 ```{r}
 #| label: fig-plot3
 #| echo: false
 #| message: false
-#| fig-cap: f(x) = 1/20 with limited domain
+#| fig-cap: "$f(x) = 1/20 \\text{ for } 4 \\leq x \\leq 15$"
 #| fig-height: 3
 #| fig-width: 4
 
@@ -84,31 +83,27 @@ ggplot() +
     scale_x_continuous(breaks = c(0, 4, 15, 20))
 ```
 
-From @fig-plot3, the shaded region is a rectangle with base 11 ($15 - 4$) and height $\frac{1}{20}$ and $Area = 11 \cdot \frac{1}{20} = \frac{11}{20} = .55$. 
+From @fig-plot3, the shaded region is a rectangle with base 11 ($15 - 4$) and height $\frac{1}{20}$ and $Area = 11 \cdot \frac{1}{20} = \frac{11}{20} = .55$.
 
 This area corresponds to probability $P(4<x<15) = 0.55$
 
 ### Cumulative Distribution Function (CDF)
+
 $P(X \le x)$ is called the **Cumulative Distribution Function** or CDF. This is the probability that $X$ is less than $x$. CDF gives the *area to the left* and $P(X > x)$ *gives area to the right*. These are related as: $P(X>x) = 1-P(X<x)$
 
 ### Question 1
-What is the probability that $x$ takes a value between 2.3 and 12.7? 
+
+What is the probability that $x$ takes a value between 2.3 and 12.7?
 
 ::: {pdf}
 \vspace{2cm}
 :::
 
-::: {html}
-<div style="height: 50px;"></div>
+:::: {html}
+::: {style="height: 50px;"}
 :::
+::::
 
 ### Question 2
+
 Consider the function $f(x) = 1/6$ for $0 \le x \le 6$. Draw the graph of $f(x)$ and find $P(2.5 \le x \le 5.5)$
-
-::: {pdf}
-\vspace{4cm}
-:::
-
-::: {html}
-<div style="height: 100px;"></div>
-:::
