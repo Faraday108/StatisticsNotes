@@ -1,0 +1,81 @@
+# Chapter 6 Introduction
+
+The normal, continuous distribution, is among the most important of all distributions. It's bell-shaped curve is seen in almost all disciplines including psychology, business, economics, science, nursing, and mathematics. The normal distribution can be applied to many facets of the world, though care must be taken as it is not applicable to everything. 
+
+::: {.callout-note appearance="simple"}
+
+* The normal distribution has two parameters - the mean ($\mu$) and the standard deviation ($\sigma$). 
+* If $X$ has a normal distribution we designate it with $X \sim N(\mu, \sigma)$
+
+```{r}
+#| label: fig-plot1
+#| echo: false
+#| message: false
+#| fig-height: 3
+#| fig-width: 4
+library(ggplot2)
+
+ggplot() + 
+    theme_minimal(base_size = 14) + 
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),axis.line = element_line(colour = "black")) + 
+    #stat_function(fun = dnorm, geom = "function", linewidth = 1, xlim = c(-3,1)) + 
+    #stat_function(fun = dnorm, geom = "area", alpha = 0.5, fill = "lightblue", xlim = c(-1,1)) + 
+    geom_area(aes(c(-3,3)), stat = "function", fun = dnorm, fill = "#00674E", xlim = c(-3,1)) +
+    geom_area(aes(c(-3,3)), stat = "function", fun = dnorm, fill = "lightgrey", xlim = c(1,3)) + 
+    stat_function(fun = dnorm, geom = "function") + 
+    geom_vline(xintercept = 0, color = "red") + 
+    scale_x_continuous(labels = expression(mu), breaks = c(0), limits = c(-3,3)) + 
+    scale_y_continuous(labels = NULL) + 
+    labs(y = "", x = "x") + 
+    annotate(geom = 'text', x = 2, y = .5, 
+        label = "paste(X, ' ~ ', N(mu, sigma))", parse = TRUE)
+```
+
+:::
+
+* The curve is symmetric about a vertical line through the mean $\sigma$
+* Since area under the curve is 1, changing $\sigma$ will change the shape of the curve as in @fig-plot2. Recall, $\sigma$ is a measure of the spread of data. 
+
+```{r}
+#| label: fig-plot2
+#| echo: false
+#| message: false
+#| fig-height: 3
+#| fig-width: 6
+
+cols <- c("2" = "blue4", "1" = "blue", "0.5" = "lightblue")
+ggplot() + 
+    theme_minimal(base_size = 14) + 
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          axis.line = element_line(colour = "black")) + 
+
+    stat_function(fun = dnorm, args = list(sd = 2), 
+                  aes(color = factor(2)), linewidth = 1) + 
+    stat_function(fun = dnorm, args = list(sd = 2), geom = "area", 
+                  aes(fill = factor(2)), alpha = 0.5) + 
+    
+    stat_function(fun = dnorm, args = list(sd = 1), 
+                  aes(color = factor(1)), linewidth = 1) + 
+    stat_function(fun = dnorm, args = list(sd = 1), geom = "area", 
+                  aes(fill = factor(1)), alpha = 0.5) + 
+    
+    stat_function(fun = dnorm, args = list(sd = 0.5), 
+                  aes(color = factor(0.5)), linewidth = 1) + 
+    stat_function(fun = dnorm, args = list(sd = 0.5), geom = "area", 
+                  aes(fill = factor(0.5)), alpha = 0.5) + 
+    
+    geom_vline(xintercept = 0, color = "red") + 
+    
+    scale_x_continuous(labels = expression(mu), breaks = c(0), limits = c(-5,5)) + 
+    scale_y_continuous(labels = NULL) + 
+    
+    # Manually set legend colors
+    scale_color_manual(name = "Standard Deviation", 
+                       values = cols) +
+    scale_fill_manual(name = "Standard Deviation", 
+                      values = cols) +
+
+    labs(y = "", x = "x")
+```
+
