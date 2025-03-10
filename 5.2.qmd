@@ -1,0 +1,199 @@
+# 5.2 The Uniform Distribution
+
+-   In this section, we are examining more deeply the uniform distribution
+-   Continuous probability distribution that describes events that are equally likely to occur.
+
+## Equations
+
+-   The notation for a uniform distribution is: $X\sim U(a,b)$ where $a$ is the lowest value of $x$ and $b$ is the highest value of $x$
+-   The probability density function is $f(x) = \frac{1}{b-a}$ for $a \le x \le b$
+-   Theoretical mean: $\mu = \frac{a+b}{2}$
+-   Standard deviation: $\sigma = \sqrt{\frac{(b-a)^2}{12}}$
+
+## Example: Baby Smiles
+
+Assume that smiling times for 8-week old babies follow a uniform distribution from 0 to 23 seconds, inclusive. Let $X$ = length, in seconds, of an smile.
+
+In this example: $X \sim U(0,23)$ and $f(x)=\frac{1}{23-0}$ for $0 \le x \le 23$
+
+$\mu = \frac{0+23}{2}=11.50$ seconds
+
+$\sigma = \sqrt{\frac{(23-0)^2}{12}}=6.64$ seconds
+
+```{r}
+#| echo: false
+#| label: fig-plot1
+#| fig-cap: "f(x) = 1/23"
+#| fig-width: 4
+#| fig-height: 3
+#| message: false
+library(ggplot2)
+labels <- function(x) {
+  #paste(x, "grams")
+    MASS::fractions(x)
+}
+df <- data.frame(x = c(0,23,0), y = c(0, 0,1/23), xend = c(0, 23, 23), yend = c(1/23, 1/23, 1/23))
+ggplot() + 
+    theme_minimal(base_size = 14) + 
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),axis.line = element_line(colour = "black")) + 
+    xlim(0, 24) + 
+    geom_segment(data = df, aes(x = x, y = y, xend = xend, yend = yend)) + 
+    labs(y = "f(x)") +
+    geom_area(data = data.frame(x = c(0, 23), y = c(1/23, 1/23)), aes(x = x, y = y),fill = "lightblue", alpha = .5) +
+    scale_y_continuous(label = labels, limits = c(0, .1), breaks = c(0, 1/23)) + 
+    scale_x_continuous(breaks = c(0, 23))
+```
+
+**What is the probability that a randomly chosen 8-week old baby smiles between 2 and 18 seconds?**
+
+$P(2<x<18) = (base)(height) = (\qquad)(\qquad) = \qquad$
+
+**Find the 90th percentile for an 8-week old baby's smile**
+
+Ninety percent of smile times fall below the 90th percentile, so $P(x<k) = 0.90$
+
+$$
+\begin{aligned}
+P(x<k) &= 0.90 \\
+(base)(height) &= 0.90 \\
+(\qquad)(\qquad)&=0.90 \\
+(\qquad) &= (\qquad)(0.90) \\
+&= 
+\end{aligned}
+$$
+
+**Find the probability that a randomly selected 8-week old baby smiles more than 12 seconds knowing that the baby smiles *more than 8 seconds***
+
+This is a **conditional** probability, we are asking to find probability that the baby smiles more than 12 seconds when we have the condition they have smiled more than 8 seconds. This is expressed $P(x>12|x>8)$ or probability $x$ is greater than 12 given $x$ is greater than 8.
+
+**Method 1** Change the sample space by writing a new $f(x)$ to represent the fact that we know that the baby smiles $8<x<23$ instead of $0<x<23$.
+
+$f(x) = \frac{1}{\quad-\quad} = \frac{1}{\qquad}$ for $\qquad<x<\qquad$
+
+So now $P(x>12|x>8) = (\qquad-\qquad)(\frac{1}{\qquad}) = \frac{\quad}{\quad}$
+
+**Method 2** Use conditional probability formula with the original distribution:
+
+$P(A|B) = \frac{P(A \text{ AND } B)}{P(B)}$ where $P(A) = P(x>12)$ and $P(B)=P(x>8)$
+
+So:
+
+$$
+\begin{aligned}
+P(x>12|x>8)&=\frac{P(x>12 \text{ AND } x>8)}{P(x>8)}\\ &=\frac{P(\qquad)}{P(x>8)}\\
+\\
+&=\frac{\qquad}{\qquad}\\
+\\
+&=\frac{\qquad}{\qquad}
+\end{aligned}
+$$
+
+### Question 1
+
+A distribution is given as $X \sim U(0,20)$. What is $P(2<x<18)$? Find the 90^th^ percentile.
+
+::: {pdf}
+\vspace{4cm}
+:::
+
+:::: {html}
+::: {style="height: 100px;"}
+:::
+::::
+
+## Example: Bus Wait Time
+
+The amount of time, in minutes, that a person must wait for a bus is uniformly distributed between zero and 15 minutes, inclusive.
+
+**What is the probability that a person waits fewer than 12.5 minutes?**
+
+Let $X$ = the number of minutes a person waits for a bus, $a=0$ and $b=15$ then $X\sim U(0,15)$.
+
+The probability density function is then $f(x)=\frac{1}{\qquad}=\frac{1}{\quad} \text{ for } \qquad \le x \le \qquad$
+
+We now need to find $P(x<12.5)$, note this is the same as a cumulative distribution function (CDF).
+
+$P(x<k) = (base)(height)=(\qquad-\qquad)(\frac{1}{\qquad})=\qquad$
+
+So the probability that a person waits for less than 12.5 minutes is \_\_\_\_\_\_\_.
+
+**On average, how long must a person wait? Find the mean,** $\mu$ and the standard deviation $\sigma$.
+
+$\mu = \frac{a+b}{2}=\frac{\qquad+\qquad}{2}=\qquad$ so on average a person must wait \_\_\_\_\_\_\_ minutes
+
+$\sigma = \sqrt{\frac{(b-a)^2}{12}}=\sqrt{\frac{(\qquad-\qquad)^2}{12}}=\qquad \text{ minutes}$
+
+**90% of the time, the minutes a person must wait fall below what value?**
+
+Find the 90^th^ percentile:
+
+$$
+\begin{aligned}
+P(x<k)&=0.90\\
+(base)(height)&=0.90\\
+(\qquad)(\qquad)&=0.90\\
+(\qquad)&=(0.90)(\qquad)\\
+&=
+\end{aligned}
+$$
+
+The 90^th^ percentile is \_\_\_\_\_\_ minutes, or rephrased 90% of the time a person must wait at most \_\_\_\_\_\_ minutes.
+
+### Question 2
+
+The total duration of baseball games in the major league in the 2011 season is uniformly distributed between 447 hours and 521 hours inclusive.
+
+a)  Find $a$ and $b$ and describe what they represent
+
+::: {pdf}
+\vspace{1cm}
+:::
+
+:::: {html}
+::: {style="height: 25px;"}
+:::
+::::
+
+b)  Write the distribution
+
+::: {pdf}
+\vspace{1cm}
+:::
+
+:::: {html}
+::: {style="height: 25px;"}
+:::
+::::
+
+c)  Find the mean and standard deviation
+
+::: {pdf}
+\vspace{2cm}
+:::
+
+:::: {html}
+::: {style="height: 50px;"}
+:::
+::::
+
+d)  What is the probability that the duration of games for a team for the 2011 season is between 480 and 500 hours?
+
+::: {pdf}
+\vspace{2cm}
+:::
+
+:::: {html}
+::: {style="height: 50px;"}
+:::
+::::
+
+e)  What is the 65^th^ percentile for the duration of games for a team for the 2011 season?
+
+::: {pdf}
+\vspace{2cm}
+:::
+
+:::: {html}
+::: {style="height: 50px;"}
+:::
+::::
