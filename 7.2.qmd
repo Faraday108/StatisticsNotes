@@ -1,0 +1,169 @@
+---
+title: "7.2 - The Central Limit Theorem for Sums"
+---
+
+{{< include preamble.qmd >}}
+
+::: {.callout-note appearance="simple"}
+Suppose $X$ is a random variable with a distribution that may be known or unknown (can be any distribution). Using a subscript that matches the random variable:
+
+-   $\mu_X$ = the mean of $X$
+-   $\sigma_X$ = the standard deviation of $X$
+
+If you draw random samples of size $n$, then as $n$ increases, the random variable $\Sigma{X}$ (the sample sums), tends to be **normally distributed** and
+
+$$\Sigma{X} \sim N\left((n)(\mu_X), (\sqrt{n})(\sigma_X)\right)$$
+
+The **central limit theorem** for sample means says that if you keep drawing larger and larger samples and **calculating their sums**, the sample sums form their own **normal distribution**
+:::
+
+## Example 1
+
+An unknown distribution has a mean of 90 and a standard deviation of 15. A sample size of 80 is drawn randomly from the population.
+
+a.  Find the probability that the sum of the 80 values is more than 7500.
+
+-   Let $X=$ be one value from the original unknown population, the probability question asks you to find a probability for the sum of 80 values
+-   Let $\Sigma{X}=$ the sum of 80 values.
+-   Because $\mu_{X}=90$, and $n=80$, $\Sigma{X}\sim N[(80)(90), (\sqrt{80})(15)]$\
+-   mean of the sums: $(n)(\mu_{X})=(80)(90)=7200$
+-   standard deviation of the sums: $(\sqrt{n})(\sigma_{X})=(\sqrt{80})(15)$
+-   Sum of 80 values: $\Sigma{x}=7500$
+
+$P(\Sigma{x}>7500)$
+
+```{r}
+#| label: fig-plot1
+#| echo: false
+#| message: false
+#| fig-height: 3
+#| fig-width: 4
+
+source("plotting_functions.R")
+
+gg_norm_region(7500,9000,mean = 7200, sd = sqrt(80)*15)
+```
+
+`pnorm(q = 7500, mean = 7200, sd = sqrt(80)*15, lower.tail = FALSE)` $=0.01267$
+
+b.  Find the sum that is 1.5 standard deviations above the mean of the sums.
+
+$$
+\begin{aligned}
+\Sigma{x}&=(n)(\text{mean of }X)+(z)(\sqrt{n})(\text{sd of }X))\\
+\Sigma{x}&=(80)(90)+(1.5)(\sqrt{80})(15))\\
+&= 7401.2
+\end{aligned}
+$$
+
+### Question 1
+
+An unknown distribution has a mean of 45 and a standard deviation of 8. A sample size of 50 is drawn randomly from the population. Find the probability that the sum of the 50 values is more than 2400.
+
+-   Let $X=$ be one value from the original unknown population, the probability question asks you to find a probability for the sum of 50 values
+-   Let $\Sigma{X}=$ the sum of 50 values.
+-   Because $\mu_{X}=\blank$, and $n=\blank$, $\Sigma{X}\sim N[(\blank)(\blank), (\sqrt{\blank})(\blank)]$\
+-   mean of the sums: $(n)(\mu_{X})=(\blank)(\blank)=\blank$
+-   standard deviation of the sums: $(\sqrt{n})(\sigma_{X})=(\sqrt{\blank})(\blank)$
+-   Sum of 50 values: $\Sigma{x}=\blank$
+
+$P(\Sigma{x}> \blank)$
+
+`pnorm(q = ____, mean = ____, sd = sqrt(___)*___, lower.tail = FALSE)` $=$
+
+## Example 2
+
+The mean number of minutes for app engagement by a tablet user is 8.2 minutes. Suppose the standard deviation is one minute. Take a sample size of 70.
+
+a.  What are the mean and standard deviation for the sums?
+
+-   $\mu_{\Sigma{X}}=n (\mu_X)=70(8.2)=574 \text{ minutes}$
+-   $\sigma_{\Sigma{X}}=(\sqrt n)(\sigma_X)=(\sqrt 70)(1)=8.37 \text{ minutes}$
+
+b.  Find the 95th percentile for the sum of the sample. Interpret this value in a complete sentence.
+
+`qnorm(.95, 574, 8.37)` $=587.76$ minutes.
+
+c.  Find the probability that the sum of the sample is at least 10 hours.
+
+$P(\Sigma x > 600) =$ `pnorm(600, 574, 8.37, lower.tail = FALSE)` $=.0009$
+
+### Question 2
+
+Using the same distribution as Example 2:
+
+a.  What is the probability that the sum of the sample is between 7 and 10 hours? What does this mean in context of the problems?
+
+::: {pdf}
+\vspace{4cm}
+:::
+
+:::: {html}
+::: {style="height: 100px;"}
+:::
+::::
+
+b.  Find the 84th and 16th percentiles for the sum of the sample.
+
+`qnorm(p, mean, sd)` $=\blank$
+
+::: {pdf}
+\vspace{4cm}
+:::
+
+:::: {html}
+::: {style="height: 100px;"}
+:::
+::::
+
+## Homework
+
+1.  Suppose that the duration of a particular type of criminal trial is known to have a mean of 21 days and a standard deviation of seven days. We randomly sample nine trials.
+
+<!-- -->
+
+a.  In words, $\Sigma X=$
+
+`r spacer(1)`
+
+b.  $\Sigma X \sim \blank (\blank, \blank)$
+
+`r spacer(2)`
+
+c.  Find the probability that the total length of the nine trials is at least 225 days.
+
+`r spacer(2)`
+
+d.  What is the 90th percentile for the total length of nine trials?
+
+`r spacer(2)`
+
+2.  Salaries of entry-level managers at a restaurant chain are normally distributed with a mean of \$44,000 and a standard deviation of \$6,500. We randomly survey 10 managers from these restaurants. 
+
+a. In words, $X=\blank$
+
+b. $X \sim \blank (\blank, \blank)$
+
+c. In words, $\Sigma X = \blank$
+
+d. $\Sigma X \sim \blank (\blank, \blank)$
+
+e. Find the probability that the managers earn a total of over \$400,000. 
+
+`r spacer(2)`
+
+f. Find the 90th percentile for an individual manager's salary. 
+
+`r spacer(2)`
+
+g. Find the 90th percentile for the sum of 10 managers' salaries. 
+
+`r spacer(2)`
+
+h. If we surveyed 70 managers instead of 10, how would that change the distribution of part (d). 
+
+`r spacer(2)`
+
+i. If each of the 70 managers received a \$3,000 raise, how would that change the disribution in part (b)? 
+
+`r spacer(2)`

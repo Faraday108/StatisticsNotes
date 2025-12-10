@@ -1,0 +1,206 @@
+---
+title: "3.5 Tree and Venn Diagrams"
+---
+
+{{< include preamble.qmd >}}
+
+* With complex probability problems, it can be helpful to graph the situation. 
+* Venn diagrams and tree diagrams can visualize and solve complex conditional probabilities. 
+
+## Tree Diagrams 
+
+* A type of graph used to determine outcomes of an experiment. 
+* Consists of *branches* labeled with either frequencies or probabilities
+
+### Tree Diagram Example 
+
+In a bag there are 11 balls - three red (R), eight blue (B). Draw two balls, one at a time, **with replacement**. Recall, with replacement means you put the first ball back in the bag before selecting the second. Therefore, you are selecting from exactly the same group each time, so each draw is independent. The tree diagram below shows the possible outcomes. 
+
+\begin{center}
+\begin{tikzpicture}[sloped, 
+  level 1/.style={sibling distance=30mm},
+  level 2/.style={sibling distance=15mm},
+  level distance=20mm]
+
+% Tree
+\node [draw]{Draw a marble}
+child { node (A1) {8B}
+    child { node (B1) {8B} 
+        child {node {64BB}}}
+    child { node (B2) {3R} 
+        child {node {24BR}}}
+}
+child { node (A2) {3R}
+    child { node (B3) {8B} 
+        child {node {24RB}}}
+    child { node (B4) {3R} 
+        child {node {9RR}}}
+};
+
+% Background highlight rectangles
+\begin{scope}[on background layer]
+\node[
+    fit = (A1) (A2),
+    fill=yellow!30,
+    rounded corners,
+    inner sep=8pt
+] (1stdrawbox) {};
+\end{scope}
+
+\begin{scope}[on background layer]
+\node[
+    fit = (B1) (B4),
+    fill=yellow!30,
+    rounded corners,
+    inner sep=8pt
+] (2nddrawbox) {};
+\end{scope}
+
+% Label for draw numbers
+\node[right=2pt of 1stdrawbox, text=red] {First Draw};
+\node[right=2pt of 2nddrawbox, text=red] {Second Draw};
+
+\end{tikzpicture} 
+\end{center}
+
+* The first set of branches represent the first draw. There are 8 ways to draw a blue marble and 3 ways to draw a red one. 
+* The second set of branches represent the second draw. Regardless of the choice on the first draw, there are still 8 ways to draw a blue marble and 3 ways to draw a red marble. 
+* End of each branch shows total number of possible outcomes. For example, on first draw there are 8 ways to get a blue marble, and on second draw there are 8 ways to get a blue marble, so there are $8\times8=64$ ways to get two blue marbles in succession. 
+
+\begin{enumerate}
+\item How many total outcomes are in the sample space? 
+\vspace{3em}
+\item Calculate $P(RR)$
+\begin{enumerate}
+\item Using the tree diagram: 
+\vspace{3em}
+\item Given the events are independent, using $P(RR)=P(R)P(R)$
+\vspace{3em}
+\end{enumerate}
+\item Calculate $P(RB or BR)$
+\begin{enumerate}
+\item Using the tree diagram: 
+\vspace{3em}
+\item Given the events are mutually exclusive, using $P(RB \text{ or } BR)=P(RB)+P(BR)$
+\vspace{3em}
+\end{enumerate}
+\item Using the tree diagram, calculate $P(B|R)$
+\vspace{3em}
+\end{enumerate}
+
+## Problem 1
+In a standard deci, there are 52 cards. Twelve cards are face cards (event $F$), and 40 cards are not face cards (event $N$). Draw two cards, one at a time, with replacement. All possible outcomes are shown in the tree diagram as frequencies. Using the tree diagram, calculate $P(FF)$. 
+
+\begin{center}
+\begin{tikzpicture}[sloped, 
+  level 1/.style={sibling distance=30mm},
+  level 2/.style={sibling distance=15mm},
+  level distance=20mm]
+
+% Tree
+\node [draw]{Draw a card}
+child { node (A1) {12F}
+    child { node (B1) {12F} 
+        child {node {144FF}}}
+    child { node (B2) {40N} 
+        child {node {480FN}}}
+}
+child { node (A2) {40N}
+    child { node (B3) {12F} 
+        child {node {480NF}}}
+    child { node (B4) {40N} 
+        child {node {1,600NN}}}
+};
+
+% Background highlight rectangles
+\begin{scope}[on background layer]
+\node[
+    fit = (A1) (A2),
+    fill=yellow!30,
+    rounded corners,
+    inner sep=8pt
+] (1stdrawbox) {};
+\end{scope}
+
+\begin{scope}[on background layer]
+\node[
+    fit = (B1) (B4),
+    fill=yellow!30,
+    rounded corners,
+    inner sep=8pt
+] (2nddrawbox) {};
+\end{scope}
+
+% Label for draw numbers
+\node[right=2pt of 1stdrawbox, text=red] {First Draw};
+\node[right=2pt of 2nddrawbox, text=red] {Second Draw};
+
+\end{tikzpicture} 
+\end{center}
+
+## Problem 2 
+A bag has three red marbles and eight blue marbles in it. Draw two marbles, one at a time, *without* replacement. Branches are labeled with probabilities instead of frequencies. 
+
+\begin{center}
+\begin{tikzpicture}[sloped, 
+  level 1/.style={sibling distance=30mm},
+  level 2/.style={sibling distance=15mm},
+  level distance=20mm]
+
+% Tree
+\node [draw]{Draw a marble}
+child { node (A1) {\frac{8}{11}}
+    child { node (B1) {\frac{7}{10}} 
+        child {node {\frac{56}{110}}}}
+    child { node (B2) {\frac{3}{10}} 
+        child {node {\frac{24}{110}}}}
+}
+child { node (A2) {\frac{3}{11}}
+    child { node (B3) {\frac{8}{10}} 
+        child {node {\frac{24}{110}}}}
+    child { node (B4) {\frac{2}{10}} 
+        child {node {\frac{6}{110}}}}
+};
+
+% Background highlight rectangles
+\begin{scope}[on background layer]
+\node[
+    fit = (A1) (A2),
+    fill=yellow!30,
+    rounded corners,
+    inner sep=8pt
+] (1stdrawbox) {};
+\end{scope}
+
+\begin{scope}[on background layer]
+\node[
+    fit = (B1) (B4),
+    fill=yellow!30,
+    rounded corners,
+    inner sep=8pt
+] (2nddrawbox) {};
+\end{scope}
+
+% Label for draw numbers
+\node[right=2pt of 1stdrawbox, text=red] {First Draw};
+\node[right=2pt of 2nddrawbox, text=red] {Second Draw};
+
+\end{tikzpicture} 
+\end{center}
+
+Calculate the following: 
+
+\begin{enumerate}
+\item $P(RR)$
+\vspace{3em}
+\item $P(RB \text{ OR } BR)$
+\vspace{3em}
+\item $P(R|B)$
+\vspace{3dm}
+\item $P(R \text{ AND } B)$
+\vspace{3em}
+\item $P(BB)$
+\vspace{3em}
+\item $P(B|R)$
+\end{enumerate}
+

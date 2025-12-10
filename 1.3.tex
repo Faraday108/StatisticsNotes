@@ -1,0 +1,293 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={1.3 - Frequency, Frequency Tables, and Levels of Measurement},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{1.3 - Frequency, Frequency Tables, and Levels of Measurement}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+
+\subsection{Levels of measurement}\label{levels-of-measurement}
+
+\begin{figure}[H]
+
+\begin{minipage}{0.46\linewidth}
+\textbf{Nominal Scale Level}
+
+\begin{itemize}
+\tightlist
+\item
+  Categorical data: categories, colors, names, labels, favorite food,
+  yes/no
+\item
+  Not ordered - e.g.~favorite foods \(\blanker{5cm}\)
+\end{itemize}
+
+\textbf{Ordinal Scale Level}
+
+\begin{itemize}
+\tightlist
+\item
+  Categorical data
+\item
+  Can be ordered - e.g.~top 5 \(\blanker{5cm}\)
+\end{itemize}
+
+\end{minipage}%
+%
+\begin{minipage}{0.09\linewidth}
+~\end{minipage}%
+%
+\begin{minipage}{0.46\linewidth}
+\textbf{Interval Scale Level}
+
+\begin{itemize}
+\tightlist
+\item
+  Numeric data, differences are meaningful, but ratios are not
+\item
+  Does not have a definite 0
+\item
+  e.g.~Temperature \(^\circ C\):
+  \(80^\circ \text C - 40^\circ \text C = 40 ^\circ \text C\) makes
+  sense but \(80^\circ \text C\) is not twice as hot as
+  \(40^\circ \text C\)
+\end{itemize}
+
+\textbf{Ratio Scale Level}
+
+\begin{itemize}
+\tightlist
+\item
+  Numeric data, more calculation possible and ratios make sense
+\item
+  Has a definite 0
+\item
+  e.g.~mass, race time, test scores
+\end{itemize}
+
+\end{minipage}%
+
+\end{figure}%
+
+\subsubsection{Example 1}\label{example-1}
+
+What type of measure scale is being used (nominal, ordinal, interval,
+ratio)?
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  High school soccer players classified by their athletic ability:
+  superior, above average, average, below average \(\blanker{4cm}\)
+\item
+  Baking temperatures for various dishes:
+  \(350 ^\circ \text F, 400^\circ \text F, 325 ^\circ \text F, 250 ^\circ \text F\)
+  \(\blanker{4cm}\)
+\item
+  The colors of crayons in a 24-crayon box \(\blanker{4cm}\)
+\item
+  Social security numbers \(\blanker{4cm}\)
+\item
+  Incomes measured in dollars \(\blanker{4cm}\)
+\item
+  A satisfaction survey of a social website by number: 1 = very
+  satisfied, 2 = somewhat satisfied, 3 = not satisfied \(\blanker{4cm}\)
+\item
+  Preferred TV shows: comedy, drama, science fiction, sports, news
+  \(\blanker{4cm}\)
+\item
+  Time of day on an analog watch \(\blaner{4cm}\)
+\item
+  The distance in miles to the closest grocery store \(\blanker{4cm}\)
+\item
+  The dates 1066, 1492, 1644, 1944, and 1947 \(\blanker{4cm}\)
+\item
+  The heights of 21-65 year-old women \(\blanker{4cm}\)
+\item
+  Letter grades: A, B, C, D, and F \(\blanker{4cm}\)
+\end{enumerate}
+
+\subsection{Frequency}\label{frequency}
+
+Twenty students were asked how many hours they worked per day. Their
+responses, in hours, were as follows: 5, 6, 3, 3, 2, 4, 7, 5, 2, 3, 5,
+6, 5, 4, 4, 3, 5, 2, 5, 3. Table~\ref{tbl-tbl1} lists the different data
+values.
+
+\begin{table}[h]
+
+\caption{\label{tbl-tbl1}Total number of deaths worldwide as a result of
+earthquakes from 2000-2012}
+
+\centering{
+
+\begin{tabular}{c | c | c | c}
+\textbf{Data Value (hours)} & \textbf{Frequency} & \textbf{Relative Frequency} & \textbf{Cumulative Relative Frequency}\\
+\hline
+2 & 3 & $\frac{3}{20} \text or .15$ & .15 \\
+3 & 5 & $\frac{5}{20} \text or .25$ & .15 + .25 = .40 \\
+2001 & 21,357 & 2008 & 88,011 \\
+ & & \textbf{Total} & \textbf{832,856}
+\end{tabular}
+
+}
+
+\end{table}%
+
+
+
+
+\end{document}

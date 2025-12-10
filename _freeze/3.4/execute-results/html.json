@@ -1,0 +1,15 @@
+{
+  "hash": "98dd4984de1cecf5388d917751cfc4b8",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"3.4 - Contingency Tables\"\n---\n\n\n\n\n* We have used **two-way tables** in prior chapters \n* When used to calculate probabilities, it is often called a **contingency table** \n    * Name comes from ease of calculating conditional probabilities \n\n### Example 1 \nSuppose a study of speeding violations and drivers who use cell phones produced the following fictional data: \n\n```{=latex}\n\\begin{tabular}{p{3cm} | p{3cm} | p{3cm} | l}\n& \\textbf{Speeding Violation in the Last Year} & \\textbf{No Speeding Violation in the Last Year} & \\textbf{Total} \\\\\n\\hline\nUses a cell phone while driving & 25 & 280 & 305 \\\\\nDoes not use a cell phone while driving & 45 & 405 & 450 \\\\\nTotal & 70 & 685 & 755\n\\end{tabular}\n```",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,191 @@
+---
+title: "2.7 - Measures of the Spread of the Data"
+execute: 
+    echo: true
+---
+
+{{< include preamble.qmd >}}
+
+* How widely spread are the data? 
+    * Are the data values concentrated around the mean? 
+    * Are they spread out? 
+* The most common measure of variation, or spread, is the **standard deviation** which measures how far data values are from the mean. 
+* From this you can expect: 
+    * The standard deviation is always positive or zero
+    * A small standard deviation means there is little spread (data is close to the mean) 
+    * A large standard deviation means there is a lot of spread 
+
+### Example - Which supermarket is better? 
+
+```{=latex}
+\begin{tabular}{l | c | c}
+\textbf{Supermarket} & \textbf{Population Standard Deviation, $\sigma$} & \textbf{Population Mean, $\mu$}\\
+\hline
+Supermarket A & 2 minutes & 5 \\
+Supermarket B & 4 minutes & 5 
+\end{tabular}
+```
+
+\vspace{5em}
+
+## Z-score 
+
+* Helps answer "how typical is a value" by finding how many standard deviations away from the mean it is. 
+
+* $z=\frac{x-\mu}{\sigma}$ 
+* Where $z$ = the number of standard deviations from the mean, $x$ = a single data value, $\mu$ = the population mean, and $\sigma$ = the population standard deviation. 
+* A value more than $2\sigma$ in either direction of the mean $\mu$ is considered "far". 
+
+\newpage
+
+### Example - z-score 
+
+An elementary school class ran one mile with a mean of 11 minutes and a standard deviation of three minutes. Rachel, a student in the class, ran one mile in 8 minutes. 
+A junior high school class ran one mile with a mean of nine minutes and a standard deviation of two minutes. Kenji, a student in the class, ran one mile in 8.5 minutes. 
+A high school class ran one mile with a mean of seven minutes and a standard deviation of four minutes. Nedda, a student in the class, ran one mile in eight minutes. 
+
+a. Why is Kenji considered a better runner than Nedda even through Nedda ran faster? 
+
+\vspace{5em}
+
+b. Who is the fastest runner with respect to their class? 
+
+\vspace{5em} 
+
+## Calculating the standard deviation 
+
+* If $x$ is a number, then $x-mean$ is called its *deviation* 
+* In a data set, there are as many deviations as data points, the deviations together are used to calculate the standard deviation 
+    * In a **population**: the deviation is $x-\mu$ 
+    * In a **sample**: the deviation is $x-\bar x$ 
+* To find standard deviation, first find **variance**: the average of the squares of deviations (have to square deviations, otherwise they add up to 0!) 
+    * Population variance: $\sigma^2=\frac{\sum (x-\mu)^2}{N}$
+    * Sample variance: $s^2=\frac{\sum(x-\bar x)^2}{n-1}$
+        * Note we use $n-1$ instead of $N$ for the sample variance. You can think of this as we need to account for $\bar x$ being an estimate of $\mu$ which effectively means our estimate is less certain. 
+
+Finally, to get standard deviation, square root the variance: 
+
+$$
+\begin{aligned}
+\sigma&=\sqrt{\frac{\sum(x-\mu)^2}{N}} \\
+s&=\sqrt{\frac{\sum(x-\bar x)^2}{n-1}}
+\end{aligned}
+$$
+
+### Example - Using the standard deviation 
+
+The following data are the distances (in miles) between 20 retail stores and a large distribution center: 
+
+`29, 37, 38, 40, 58, 67, 68, 69, 76, 86, 87, 95, 96, 96, 99, 106, 112, 127, 145, 150`
+
+a. Using a graphing calculator or computer to find the standard deviation of the distances rounded to the nearest tenth. 
+
+\vspace{3em}
+
+b. Find the value that is one standard deviation below the mean. 
+
+\vspace{3em}
+
+## Homework 
+
+*Use the following information to answer the exercises* : The population parameters below describe the full-time equivalent number of students (FTES) each year at Lake Tahoe Community College from 1976-1977 through 2004-2005. 
+
+* $\mu=1000$ FTES 
+* median $=1,014$ FTES 
+* $\sigma=474$ FTES 
+* first quartile = $528.5$ FTES 
+* third quartile = $1,447.5$ FTES 
+* $n=29$ years 
+
+1. A sample of 11 years is taken. About how many are expected to have an FTES of $1,014$ or above? Explain. 
+
+\vspace{4em}
+
+2. Seventy-five percent of all years have an FTES 
+    a. at or below [             ]{.underline} 
+    b. at or above [             ]{.underline} 
+
+3. The population standard deviation is [             ]{.underline} 
+
+4. What percentage of the FTES were from 528.5 to 1,447.5? How do you know? 
+
+\vspace{3em}
+
+5. What is the IQR? What does the IQR represent? 
+
+6. How many standard deviations away from the mean is the median? 
+
+\vspace{4em}
+
+\newpage
+
+## OPTIONAL READING - Why use n-1 in computing standard deviation? 
+
+To see the effect that using $n$ vs $n-1$ has in computing the sample standard deviation compared to the true population standard deviation, we can run a simulation as follows: 
+
+1. Create a data set, for example `rnorm(100)` to create 100 values sample from a normal distribution. 
+
+2. From this data, we can compute the true population standard deviation as $\sigma^2=\frac{\sum(x-\mu)^2}{N}$ 
+
+3. We can then sample the population many times times and compare what the sample standard deviation is using the corrected ($n-1$) and uncorrected ($n$) standard deviation. 
+
+**Step 1**: Create data set and then sample it
+
+```{r}
+library(tidyverse, quietly=TRUE)
+library(ggplot2)
+
+# Create data set
+data <- data.frame(x=rnorm(100))
+
+# Sample data set 10,000 times and save result 
+samples <- purrr::map(1:10000, ~ sample(data$x, size = 10, replace = TRUE))
+
+paste("Example Sample 1:"); samples[[1]]
+```
+
+
+**Step 2**: Compute true population standard deviation
+
+```{r}
+true_pop_var <- (sum((data$x - mean(data$x))^2) / length(data$x))
+paste("True population standard deviation:"); sqrt(true_pop_var)
+```
+
+
+**Step 3**: Find corrected and uncorrected variance of each sample
+
+```{r}
+uncorrected_var_each <- purrr::map_dbl(samples, ~ (sum((.x - mean(.x))^2) / (length(.x))))
+corrected_var_each <- purrr::map_dbl(samples, ~ (sum((.x - mean(.x))^2) / (length(.x)-1)))
+
+# Creates data frames to store sample number, variance, correction, and standard deviation
+uncorr <- data.frame(sample_num=1:length(uncorrected_var_each),
+                     variances = uncorrected_var_each, 
+                     Correction = rep("Uncorrected (n)", length(uncorrected_var_each)), 
+                     cumulative_mean_var= cummean(uncorrected_var_each)) %>%
+    mutate(stdev=sqrt(cumulative_mean_var))
+corr <- data.frame(sample_num=1:length(corrected_var_each),
+                   variances = corrected_var_each, 
+                   Correction = rep("Corrected (n-1)", length(corrected_var_each)), 
+                   cumulative_mean_var = cummean(corrected_var_each)) %>%
+    mutate(stdev=sqrt(cumulative_mean_var))
+
+# Combine data frames
+result <- rbind(uncorr, corr)
+head(result)
+```
+
+Finally, let's view the results. In the following graph, we see that as new samples of the population are taken, the cumulative mean (mean of new and all prior samples) approaches the true population standard deviation $\sigma$ only for the corrected case. 
+
+```{r}
+ggplot(result, aes(x=sample_num, color = Correction)) + 
+    geom_line(aes(y=stdev)) + 
+    geom_hline(yintercept = sqrt(true_pop_var),color="red") + 
+    labs(title = "Effect of correction on Standard Deviation calculation", 
+         x = "Number of Samples", 
+         y = "Cumulative mean of Standard Deviation") + 
+    annotate("text",x=7500, y=1.075, color = "red", label = paste0("sigma == ",round(sqrt(true_pop_var),3)), parse = TRUE)
+```
+
+

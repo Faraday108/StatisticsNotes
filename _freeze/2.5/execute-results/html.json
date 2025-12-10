@@ -1,0 +1,15 @@
+{
+  "hash": "956476604ad23a58098f7af98ff6987c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"2.5 - Measures of the Center of the Data\"\n---\n\n\n\n\nThe *center* of a data set is a way of describing location \n\n* **Mean**, or average: (sum of data) / (number of data points) \n* **Median**: middle of data, 50th percentile \n* **Mode**: most frequently occurring \n\n::: {.callout-tip icon=\"false\"}\nWhy do we have three different ways to measure the center? \nSuppose that in a small town of 50 people, one person earns $5,000,000 per year and the other 49 each earn $30,000. Which is a better measure of the *center*: mean or median? \n\n\\vspace{4em}\n\n:::\n\n### More about the mean \n\n* Sample mean is represented by: $\\bar{x}$ (pronounced x-bar). \n    * Sample mean is a statistic\n* Population mean is represented by : $\\mu$ (pronounced mew) \n    * Population mean is a parameter \n* Law of large numbers (discussed more in a later chapter): \n    * As $n$ (number of samples) increases, $\\bar{x}$ approaches $\\mu$ \n\n### Mean of grouped frequency tables \n\n* When only grouped data is given, you do not know individual values and can't compute an exact mean \n* We can approximate the mean by: \n    * Find the midpoint of each interval\n    * Multiply midpoint of each interval by frequency of each interval and all the products \n    * Divide by the fum of all frequencies \n\n$\\text{Mean of frequency table}=\\frac{\\sum f\\cdot m}{\\sum f}$\n\nWhere $f$ = frequency of the interval, $m$ = the midpoint of the interval, and $\\sum$ (read as sigma) means to sum up. \n\n### Example 1 \n\nA frequency table displaying Professor Blount's last statistics test is shown. Find the best estimate of the class mean. \n\n::: {#tbl-tbl1 tbl-pos=\"h\"}\n```{=latex}\n\\begin{tabular}{c | c}\n\\textbf{Grade Interval} & \\textbf{Number of Students} \\\\\n\\hline\n50-56.5 & 1 \\\\\n56.5-62.5 & 0 \\\\\n62.5-68.5 & 4 \\\\\n68.5-74.5 & 4 \\\\\n74.5-80.5 & 2 \\\\\n80.5-86.5 & 3 \\\\\n86.5-92.5 & 4 \\\\\n92.5-98.5 & 1\n\\end{tabular}\n```\n\n:::\n\n## Homework \n\nThe following table gives the percentages of children under age 5 diagnosed with a medical condition. What is the best estimate for the mean percentage of children with the condition? \n\n```{=latex}\n\\begin{tabular}{p{5cm} | l}\n\\textbf{Percentage of Children with the Condition} & \\textbf{Number of Countries} \\\\\n\\hline\n16-21.45 & 23 \\\\\n21.45-26.9 & 4 \\\\\n26.9-32.35 & 9 \\\\\n32.35-37.8 & 7 \\\\\n37.8-43.25 & 6 \\\\\n43.25-48.7 & 1\n\\end{tabular}\n```\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

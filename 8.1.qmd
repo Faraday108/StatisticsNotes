@@ -1,0 +1,242 @@
+---
+title: "8.1 - A Single Population Mean Using the Normal Distribution"
+---
+
+{{< include preamble.qmd >}}
+
+## Calculating a Confidence Interval (CI)
+
+* Goal is to find confidence interval for *population* mean. 
+* Constructed from point estimate $\bar x$, the sample mean
+    * "What do we think $\mu$ probably is?
+* And the "margin of error" **EBM** or "error bound of sample mean"
+    * "How far off could our estimate be?"
+
+::: {.callout-note appearance="simple" title="Confidence Interval"}
+Form of the confidence interval: 
+
+$$
+(\bar x - EBM, \bar x + EBM)
+$$
+:::
+
+* The margin of error *EBM* depends on the confidence level (CL).  
+* **Confidence Level (CL)**: "What is the probability that $\mu$ is within the confidence interval? 
+    * $CL = 1-\alpha$
+* Related probability **alpha**: "What is the probability that $\mu$ is outside the confidence interval?"
+    $\alpha=1-CL$
+
+```{r}
+#| label: fig-plot1
+#| echo: false
+#| message: false
+#| fig-height: 3
+#| fig-width: 4
+gg_norm_CI(upper = 2, lower = -2, mean = 0, sd = 1)
+```
+
+### To construct confidence interval for population mean  
+There are two methods to go about this with what we know so far, recalling that means are distributed $N\sim(\mu_X, \frac{\sigma_X}{\sqrt n})$.  
+
+::: {.callout-note appearance="simple" title="Confidence Interval: $z$-scores"}
+1. Given a confidence level, we can use *z*-scores to find the EBM as: 
+    * $\text{EBM}=z_{\alpha/2} \cdot \frac{\sigma_X}{\sqrt n}$
+    * where $z_{\alpha/2}$ is the "critical *z*-score" that puts **CL** area in the middle, $\alpha/2$ to the right, and $\alpha/2$ to the left. 
+    * Recall that this is finding how far a value is from the middle of a normal distribution. 
+    * Can be found with `qnorm(1-alpha/2)`
+    * Then the CI is $\bar x - \text{EBM}, \bar x + \text{EBM}$
+
+:::
+
+::: {.callout-note appearance="simple" title="Confidence Interval: `qnorm`"}
+2. Given a confidence level, can use `qnorm` to find the upper and lower values directly. 
+    * Lower bound: `qnorm(alpha/2, mean, sd/sqrt(n))`
+    * Upper bound: `qnorm(1-alpha/2, mean, sd/sqrt(n))`
+
+:::
+
+### Example 1 {#sec-E1} 
+
+Suppose scores on exams in statistics are normally distributed with an unknown population mean and a population standard deviation of 3 points. A random sample of 36 scores is taken and gives a sample mean of 68. Find a 90% confidence interval estimate for the true (population) mean exam score. 
+
+#### Method 1: *z*-scores  
+
+* We need $\bar x$ and **EBM**  
+    * $\bar x=\blank$
+    * $\sigma_X = \blank$
+    * $n = \blank$
+    * $\text{EBM}=z_{\alpha/2} \cdot \frac{\sigma_X}{\sqrt n}$
+        * $z_{\alpha/2}=z_{(1-\blank)/2}=z_{\blank}$=`qnorm(1-    )`=$\blank$
+        * $\sigma_X=\blank$
+        * $\sqrt{n}=\blank$
+        * $\text{EBM}=\blank \cdot \frac{\phantom{00000}}{\phantom{00000}}=\blank$
+    * Lower = $\bar x - \text{EBM}=\blank$
+    * Upper = $\bar x + \text {EBM}=\blank$
+    * The 90% Confidence Interval for the mean score is $(\blank,\blank)$
+    
+#### Method 2: Directly with technology  
+
+* Lower: `qnorm(alpha/2, mean, sd/sqrt(n))` = `qnorm(   ,   ,     )` = 
+* Upper: `qnorm(1-alpha/2, mean, sd/sqrt(n))` = `qnorm(   ,   ,     )` =
+
+* The 90% Confidence Interval for the mean score is $(\blank,\blank)$
+
+### Question 1  
+
+Suppose average pizza delivery times are normally distributed with an unknown population mean and a population standard deviation of 6 minutes. A random sample of 28 pizza delivery restaurants is taken and has a sample mean delivery time of 36 minutes.  
+
+Find a 90% confidence interval estimate for the population mean delivery time. 
+
+`r spacer(6)`
+
+### Example 2 {#sec-E2}
+What happens if we change the confidence level? Change the original problem in [Example 1](#sec-E1) by using a 95% confidence level. 
+
+* We need $\bar x$ and **EBM**  
+    * $\bar x=68$
+    * $\sigma_X = 3$
+    * $\text{EBM}=z_{\alpha/2} \cdot \frac{\sigma_X}{\sqrt n}$
+        * $z_{\alpha/2}=z_{(1-\blank)/2}=z_{\blank}$=`qnorm(1-     )`=$\blank$
+        * $\sigma_X=\blank$
+        * $\sqrt{n}=\blank$
+        * $\text{EBM}=\blank \cdot \frac{\phantom{00000}}{\phantom{00000}}=\blank$
+    * Lower = $\bar x - \text{EBM}=\blank$
+    * Upper = $\bar x + \text {EBM}=\blank$
+    * The 95% Confidence Interval for the mean score is $(\blank,\blank)$
+
+#### Visualize changing confidence interval
+
+To compare the confidence intervals in [Example 1](#sec-E1) and [Example 1](#sec-E2), we can compare their graphs. 
+
+
+```{r}
+#| label: fig-plot2
+#| echo: false
+#| message: false
+#| fig-height: 3
+#| fig-width: 4
+gg_norm_CI_CL(.9, mean = 68, sd = 3, mean_label = T)
+```
+```{r}
+#| label: fig-plot3
+#| echo: false
+#| message: false
+#| fig-height: 3
+#| fig-width: 4
+gg_norm_CI_CL(.95, mean = 68, sd = 3, mean_label = T)
+```
+Notice that the where the confidence interval is centered does not change as the confidence level changes, but rather the confidence interval is wider for higher confidence levels. 
+
+### Summary  
+
+* Increasing the confidence level increases the error bound, making the confidence interval wider. 
+* Decreasing the confidence interval decreases the error bound, making the confidence interval narrower. 
+
+## Working backwards from Confidence Intervals  
+
+* When the confidence interval is calculated, we build it from the sample mean and error bound. 
+* Sometimes in a statistical study, only the confidence interval is stated. 
+    * In this case, we can work backward to find the error bound and sample mean. 
+
+::: {.callout-note appearance="simple" title="Find Sample Mean from CI"}  
+
+\begin{gather*}
+\bar{x} = \frac{\text{upper bound} + \text{lower bound}}{2} \\
+\text{or} \\
+\bar{x} = \text{upper bound} - \text{EBM}
+\end{gather*}
+
+:::
+
+::: {.callout-note appearance="simple" title="Find EBM from CI"}
+
+\begin{gather*}
+\text{EBM} = \frac{\text{upper bound} - \text{lower bound}}{2}\\
+or\\
+\text{EBM} = \text{upper bound} - \bar x \\
+\end{gather*}
+
+:::
+
+### Example 3 {#sec-E3}
+Suppose that we know that a confidence interval is $(67.18, 68.82)$ and we want to find the error bound and sample mean. 
+
+Calculate the sample mean: 
+
+$$
+\begin{aligned}
+\bar x &= \frac{67.18 + 68.82}{2} \\
+&= \blank
+\end{aligned}
+$$
+
+Calculate the error bound: 
+
+$$
+\begin{aligned}
+EBM &= \frac{68.82-67.18}{2} \\
+&= \blank
+\end{aligned}
+$$
+
+### Question 2
+
+Suppose we know that a confidence interval is $(42.12, 47.88)$. Find the error bound and sample mean. 
+
+`r spacer(6)`
+
+## Calculating the sample size $n$  
+If a researcher desires a specific margin of error, they can use the error bound formula ($\text{EBM}=z_{\alpha/2} \cdot \frac{\sigma_X}{\sqrt n}$) to calculate the required sample size. 
+
+::: {.callout-note appearance="simple" title="Sample Size Formula"}
+The formula for sample size: 
+
+$n=\frac{z^2\sigma^2}{\text{EBM}^2}$
+:::
+
+### Example 4  
+The population standard deviation for the age of Foothill College students is 15 years. If we want to be 95 percent confident that the sample mean age is within 2 years of the true population mean, how many randomly selected Foothill college students must be surveyed? 
+
+* Given: $\sigma = 15$ and $\text{EBM} = 2$
+* We need $z_{\alpha/2}=z_.025 = \blank$
+    * Use `qnorm(    )`
+
+Then: 
+
+$$
+\begin{aligned}
+n&=\frac{z^2\sigma^2}{\text{EBM}^2}\\
+&=\frac{(\blank)^2 \cdot 15^2}{2^2}\\
+&=\blank
+\end{aligned}
+$$
+
+Then $n=\blank$, note you should always round up to ensure the sample size is large enough. 
+
+### Question 3  
+
+The population standard deviation for the height of high school basketball players is three inches. If we want to be 95 percent confident that the sample mean height is within one inch of the true population height, how many randomly selected students must be surveyed? 
+
+`r spacer(6)`
+
+## Homework  
+
+1. Among various ethnic groups, the standard deviation of heights is known to be approximately three inches. We wish to construct a 95% confidence interval for the mean height of male Swedes. 48 male Swedes are surveyed. The sample mean is 71 inches. The sample standard deviation is 2.8 inches. 
+
+    a.  i. $\bar x = \blank$
+        ii. $\sigma = \blank$
+        iii. $n = \blank$ 
+    
+    b. In words, define the random variables $X$ and $\bar X$ 
+
+    c.  Which distribution should you use for this problem? Explain your choice 
+
+    d.  Construct a 95% confidence interval for the population mean height of male Swedes. 
+
+        i. State the confidence interval  
+        ii. Sketch the graph  
+        iii. Calculate the error bound  
+
+    e.  What will happen to the level of confidence obtained if 1000 male Swedes are surveyed instead of 48? Why? 
+
+`r spacer(10)`

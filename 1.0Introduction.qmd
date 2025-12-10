@@ -1,1 +1,24 @@
-# Chapter 1 Introduction
+---
+title: "Chapter 1: Sampling and Data"
+---
+
+{{< include preamble.qmd >}}
+
+## Introduction  
+- You might wonder "when and where will I use statistics?"
+- We see statistics every day in **news**, **TV**, and **online**  
+  (examples: ________, ________, ________).
+- As statistics are presented throughout your life, you need to know how to analyze the information thoughtfully.  
+- Learning statistics helps with real-life decisions such as:  
+  - $\blanker{5cm}$
+  - $\blanker{5cm}$
+
+- Many careers require statistics, including:
+  - $\blanker{5cm}$
+  - $\blanker{5cm}$
+  - $\blanker{5cm}$
+
+- In this chapter, we’ll learn:  
+  - The basics of **probability** and **statistics**  
+  - How they work **together**  
+  - How to tell **good data** from **bad** data

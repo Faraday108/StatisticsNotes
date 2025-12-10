@@ -1,0 +1,98 @@
+---
+title: "Mini Data Visualization Project Instructions"
+author: "Your Name"
+format:
+  html:
+    embed-resources: true
+    theme: cosmo
+  pdf:
+    documentclass: article
+    geometry: margin=1in
+execute:
+    echo: true
+    warning: false
+    message: false
+---
+
+## Prelude: 
+
+Remember to put save this file into an R specific folder that you know where it is so you can easily find it! 
+
+## Setup 
+
+Load any packages you might need by putting them in the following block and running it: 
+
+```{r setup}
+# Example: 
+library(ggplot2)
+# Place any other packages you need here: 
+
+```
+
+## Choose your dataset 
+
+Pick one of the following: 
+
+* A built-in R dataset such as
+    * `mtcars`
+    * `iris` 
+    * `penguins` 
+    * `ToothGrowth` 
+    * `diamonds` 
+    * `storms` 
+    * or another set found at `library(help = "datasets")` 
+* Or a small CSV dataset of your own (check with me that it will work) 
+
+If you'd like to explore the above datasets, run `head(data_set_name)` in the Console below. 
+
+```{r dataset}
+# Using a built in dataset: 
+data <- penguins
+
+# Or use your own
+# Uncomment and modify:
+# data <- read.csv("your_data.csv")
+
+# View the first few rows of your chosen data: 
+
+head(data)
+```
+
+
+## Create a graph 
+Choose one graph type we learned about in class: 
+
+* Stem-and-leaf: `stem()` 
+* Bar graph: `geom_bar()` 
+* Histogram: `geom_histogram()` 
+* Box plot: `geom_boxplot()` 
+* Time series line graph: `geom_line()` 
+
+Your graph should include: 
+
+* A title 
+* Labeled axes 
+* Readable scales 
+* Appropriate bin widths (for histograms) 
+
+```{r graph}
+# Place your graph here 
+# Check prior homework assignments for layout 
+
+```
+
+
+## Interpret your graph 
+Write a short (3-6) sentence paragraph that includes: 
+
+* What variable(s) you plotted 
+* What the overall pattern or shape looks like 
+* Any clusters, outliers, or unusual features 
+* What the graph tells you about the data 
+
+Interpretation: 
+
+## Knit and submit 
+
+* Save your Quarto document as `lastname_vizproject.qmd` 
+* Knit to HTML (or PDF) and submit them to me via email. 

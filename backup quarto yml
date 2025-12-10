@@ -1,0 +1,59 @@
+number-depth: 1
+
+project:
+  type: book
+
+book:
+  title: "StatisticsGuidedNotes"
+  author: "Nathan Young"
+  date: "1/27/2025"
+  chapters:
+    - index.qmd
+    - part: 1.0Introduction.qmd
+      chapters: 
+        - 1.1.qmd
+    - part: 2.0Introduction.qmd
+    - part: 3.0Introduction.qmd
+    - part: 4.0Introduction.qmd
+    - part: 5.0Introduction.qmd
+      chapters:
+        - 5.1.qmd
+        - 5.2.qmd
+    - part: 6.0Introduction.qmd
+      chapters:
+        - 6.1.qmd
+        - 6.2.qmd
+    - part: 7.0Introduction.qmd
+      chapters:
+        - 7.1.qmd
+        - 7.2.qmd
+        - 7.3.qmd
+    - part: 8.0Introduction.qmd
+      chapters: 
+        - 8.1.qmd
+        - 8.2.qmd
+
+# bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    number-sections: false
+    include-in-header:
+        - file: macros.html
+
+  pdf:
+    fig-pos: "H"
+    number-sections: true
+    documentclass: scrreprt  # Allows more flexible margin control
+    include-in-header:
+      text: |
+        \usepackage[a4paper,margin=1in]{geometry}
+        \newcommand{\blank}{\underline{\phantom{00000}}}
+        
+
+editor: source
+engine: knitr
+
+
+

@@ -1,0 +1,155 @@
+---
+title: "2.2 Homework"
+execute: 
+  message: false
+  warning: false
+---
+
+## Setup 
+Before running any future code, run the following chunk. This will check if the required packages are installed, load them if they are, and install them if they are not. 
+
+```{r setup}
+if (!require("tidyverse")) {
+    install.packages("tidyverse")
+    library(tidyverse)}
+if (!require("ggplot2")) {
+    install.packages("ggplot2")
+    library(ggplot2)}
+```
+
+## Functions  
+To work through the following exercises, copy the code block contents required for the given problem to the code block provided and enter the data the problem gives. 
+
+### Histogram 
+A histogram shows how numerical data are distributed across intervals (bins). Use `geom_histogram()` in `ggplot()` to create one.
+
+```{r histogram example}
+# Example using manufactured data
+
+data <- data.frame("Heights" = c(58, 60, 61, 62, 63, 64, 64, 65, 65, 66, 67, 67, 68, 68, 69, 69, 70, 71, 71, 72))
+
+ggplot(data, aes(x = Heights)) +
+    geom_histogram(binwidth = 2, color = "black", fill = "skyblue") +
+    labs(title = "Histogram of Student Heights",
+         x = "Height (inches)",
+         y = "Frequency")
+```
+
+### Frequency Polygon 
+A frequency polygon is similar to a histogram but uses lines to connect the midpoints of intervals.
+You can use `geom_freqpoly()` with the same binwidth as a histogram.
+
+```{r Freqpoly}
+data <- data.frame("Test_Scores" = c(55, 57, 58, 60, 61, 62, 63, 64, 65, 67, 68, 70, 72, 73, 75, 77, 78, 80, 82, 85))
+
+ggplot(data, aes(x = Test_Scores)) +
+    geom_freqpoly(binwidth = 5, color = "darkred", size = 1) +
+    labs(title = "Frequency Polygon of Test Scores",
+         x = "Score",
+         y = "Frequency")
+```
+
+### Time Series 
+A time series graph shows how a quantity changes over time. Use a line graph, but with time (or an ordered variable) on the x-axis. 
+
+```{r}
+# Example using manufactured data
+
+data <- data.frame(
+    Day = 1:10,
+    Visitors = c(120, 135, 140, 160, 180, 170, 165, 190, 195, 210)
+)
+
+ggplot(data, aes(x = Day, y = Visitors)) +
+    geom_line(color = "blue") +
+    geom_point() +
+    labs(title = "Daily Visitors to Museum Over 10 Days",
+         x = "Day",
+         y = "Number of Visitors")
+
+```
+
+## Problems 
+### Problem 1 - Histogram 
+The following data show the number of minutes 30 students spent on social media yesterday:
+32, 34, 36, 38, 40, 41, 43, 44, 44, 45, 46, 48, 49, 49, 50, 51, 52, 53, 55, 55, 56, 58, 59, 61, 63, 64, 65, 67, 68, 69
+
+Create a histogram of the data using a binwidth of 5.
+
+```{r P1}
+
+```
+
+### Problem 2 - Histogram 
+The data show the daily high temperature (°F) in a city over 30 days:
+61, 62, 62, 63, 64, 65, 65, 66, 66, 67, 68, 68, 68, 69, 70, 70, 71, 72, 72, 73, 74, 74, 75, 75, 76, 76, 77, 78, 79, 80
+
+Create a histogram with a binwidth of 2. 
+
+```{r P2}
+
+```
+
+### Problem 3 - Frequency Polygon 
+Create a frequency polygon of the daily high temperatures (°F) recorded over 20 days:
+62, 63, 63, 65, 67, 68, 68, 69, 70, 71, 71, 72, 73, 74, 75, 75, 76, 77, 78, 80
+
+Create a frequency polygon of this data.
+
+```{r P3}
+
+```
+
+### Problem 4 - Frequency Polygon 
+Create a frequency polygon of reaction times (in milliseconds) from a group of test subjects:
+180, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280
+
+Create a frequency polygon with clearly labeled axes.
+
+```{r P4}
+
+```
+
+### Problem 5 — Time Series
+
+A company recorded its monthly online sales for one year:
+Month: Jan–Dec
+Sales (in $1000): 20, 25, 28, 30, 35, 40, 38, 37, 42, 45, 50, 48
+
+Create a time series graph showing sales over time. 
+
+```{r}
+data <- data.frame(
+    Month = factor(month.abb, levels = month.abb),
+    Sales = c(20,25,28,30,35,40,38,37,42,45,50,48)
+)
+
+ggplot(data, aes(x = Month, y = Sales, group = 1)) +
+    geom_line(color = "steelblue") +
+    geom_point() +
+    labs(title = "Monthly Online Sales",
+         x = "Month",
+         y = "Sales (in $1000)")
+
+```
+
+### Problem 6 - Time Series 
+The following data show the average number of daily visitors to a local museum over 10 days:
+Days: 1–10
+Visitors: 120, 135, 140, 160, 180, 170, 165, 190, 195, 210
+
+Create a time series plot of this data.
+
+```{r P6}
+
+```
+
+### Challenge Problem (Optional)
+
+Create your own small dataset showing how something changes over time — for example, the number of hours you studied each day for a week.
+Use a time series plot to display your data. Be sure to label your axes and include a descriptive title. 
+
+```{r Challenge}
+
+```
+

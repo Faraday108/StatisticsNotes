@@ -1,3 +1,9 @@
 # Chapter 3 Introduction
 
-WIP
+It is often necessary to guess about the outcome of an event in order to make a decision 
+
+* Politicians study polls to guess their likelihood of winning an election 
+* Teachers choose a particular course of study based on what they think students can comprehend
+* Doctors choose the treatments needed for various diseases based on their assessment of likely results 
+
+You have, more than likely, used probability. In fact, you probably have an intuitive sense of probability. Probability deals with the chance of an event occurring. Whenever you weigh the odds of whether or not to do your homework or to study for an exam, you are using probability. In this chapter, you will learn how to solve probability problems using a systematic approach. 

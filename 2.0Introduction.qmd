@@ -1,3 +1,17 @@
-# Chapter 2 Introduction
+# Chapter 2 - Descriptive Statistics
 
-WIP
+::: {.callout-tip icon="false"}
+## Chapter Objectives  
+
+* Display data graphically and interpret the following graphs: stem-and-leaf plots, line graphs, bar graphs, frequency polygons, time series graphs, box plots, and dot plots 
+* Recognize, describe, and calculate the measures of location of data with quartiles and percentiles. 
+* Recognize, describe, and calculate the measures of the center of data with mean, median, and mode. 
+* Recognize, describe, and calculate the measures of the spread of data with variance, standard deviation, and range. 
+
+::: 
+
+* Once you have a data collection, what will you do with it? 
+* Instead of looking at, for example a sample data set of house prices, looking at the median price and variation in prices can be more informative. 
+* This area of statistics is called *descriptive statistics* 
+* A statistical graph is a tool that helps you learn about the shape or distribution of a sample 
+    * Statisticians often use a graph first to get a picture of the data, followed by more formal tools. 

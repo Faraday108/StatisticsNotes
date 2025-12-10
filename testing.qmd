@@ -1,0 +1,20 @@
+---
+title: "Testing"
+format: pdf
+---
+
+Some heading text.
+
+:::: {layout="[0.5,-.1, 0.5]"}
+
+:::{#firstcol}
+text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 text in col1 
+:::
+
+:::{#secondcol}
+text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 text in col2 
+:::
+
+::::
+
+Some bottom text.

@@ -1,0 +1,195 @@
+---
+title: "3.1 Probability Terminology"
+---
+
+{{< include preamble.qmd >}}
+
+## Some terminology 
+
+**Probability**: measure of certainty of the outcome of an activity 
+    * Always a number from 0 (impossible) to 1 (certain) 
+
+**Experiment**: a planned operation carried out under controlled conditions 
+
+**Outcome**: a possible result of an experiment 
+
+**Sample Space**: set of possible outcomes in an experiment 
+
+There are 4 main ways to represent a sample space: Systematic list of outcomes, tree diagram, venn diagrams, and set notation. 
+
+\begin{tabular}{@{}p{0.2\linewidth}@{\hspace{1em}}|p{0.2\linewidth}@{\hspace{5em}}|p{0.55\linewidth}@{}}
+& \textbf{Flipping a Fair Coin} & \textbf{Flipping Two Fair Coins} \\
+\hline
+\textbf{Systematic List of Outcomes} & \makecell{heads (H) \\ tails (T)} & \makecell{HH \\ HT \\ TH \\ TT} \\
+\hline
+\textbf{Tree Diagram} & 
+\begin{tikzpicture}[grow=right, sloped, 
+  level 1/.style={sibling distance=20mm},
+  level 2/.style={sibling distance=10mm},
+  level distance=20mm]  % Optional: spacing between siblings
+
+\node {Flip a Coin}
+child { node {Heads}}
+child { node {Tails}};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[grow=right, sloped, 
+  level 1/.style={sibling distance=20mm},
+  level 2/.style={sibling distance=10mm},
+  level distance=20mm]  % Optional: spacing between siblings
+
+\node {Flip a Coin}
+child { node {Heads}
+    child { node {Heads (HH)} }
+    child { node {Tails (HT)} }
+}
+child { node {Tails}
+child { node {Heads (TH)} }
+child { node {Tails (TT)} }
+};
+\end{tikzpicture} \\
+\hline
+\textbf{Set Notation} & $S=\{H,T\}$ & $S=\{HH, HT, TH, TT\}$ \\
+\end{tabular}
+
+* An event is any combination of outcomes. 
+    * It is a subset of the sample space $S$ so uppercase letters like $A$ and $B$ are used to represent an event. 
+    * For example, event $A$ could be getting at most one heads in three coin flips. 
+    * Probability of event $A$ is written $P(A)$ and must be: 
+        * $0\le P(A) \le 1$ 
+    * What does $P(A)=0$ mean? 
+    * What does $P(A)=1$ mean? 
+
+If all outcomes in sample space are equally likely (rolling die, flipping coin), then the theoretical probability of $A$ occurring is: 
+
+$$
+P(A)=\frac{\text{Number of outcomes in event A}}{\text{Total number of possible outcomes}}
+$$
+
+::: {.callout-note icon="false"}
+### Example 1 
+
+If you toss a fair dime and a fair nickel, what is the probability of *getting one head*? 
+
+Sample Space: $S=$ 
+
+Event: $A=$
+
+Theoretical Probability: $P(A)=$
+
+\vspace{3em}
+:::
+
+## More terminology
+
+**OR Event**
+: An outcome is in the event $A \text{ OR } B$ if the outcome is in $A$ or is in $B$ or is in both $A$ an $B$. 
+
+* Think: in rolling a die, probability of getting a 2 or a 3
+
+Example: Let $A=\{1,2,3,4,5\}$ and $B=\{4,5,6,7,8\}$, then $A \text{ OR } B$ is 
+
+\vspace{2em}
+
+**AND Event** 
+: An outcome is in the event $A \text{ AND } B$ if the outcome is in both $A$ and $B$ at the same time. 
+
+* Think: in rolling two die, probability of getting a 2 and a 3
+
+Example: Let $A=\{1,2,3,4,5\}$ and $B=\{4,5,6,7,8\}$, then $A \text{ AND } B$ is
+
+\vspace{2em}
+
+**complement**:
+The complement of an event $A$ is denoted $A'$ ($A$ prime) and consists of all outcomes that are **not** in $A$. Note $P(A)+P(A')=1$ 
+
+Example: Let $S=\{1,2,3,4,5,6\}$ and $A=\{1,2,3,4\}$, then $A'=$
+
+\vspace{2em}
+
+**Conditional Probability** 
+: The probability of $A$ given $B$ is written $P(A|B)$ and is the probability that event $A$ will occur given that event $B$ has already occurred. A conditional probability *reduces the sample space*.  
+The probability of $A$ is calculated from the reduced sample space $B$ as: $P(A|B)=\frac{P(A \text{ AND } B)}{P(B)}$. 
+
+Example: roll a fair, six-sided die. The sample space is $S=\{1,2,3,4,5,6\}$. 
+Let $A=\{2,3\}$ and $B=\{2,4,6\}$, find $P(A|B)$. 
+
+To help interpret this, think of $B$ as having already occurred, so we know that we have rolled a 2, 4, or 6. So $P(A|B)$ is asking "given you have already rolled a 2, 4, or 6 what is the probability of rolling a 2 or a 3?" There are only three possible outcomes in $B$ and only 2 is in both $A$ and $B$ so $P(A|B)=\frac{1}{3}$. 
+
+Or using the equation: 
+
+$$
+\begin{aligned}
+P(A|B)&=\frac{P(A \text{ AND } B)}{P(B)} \\
+&=\frac{P(2)}{P(2,4,6)} \\ 
+&=\frac{1/6}{3/6} \\
+&=\frac{1}{3}
+\end{aligned}
+$$
+
+## Problem 1 
+
+The sample space $S$ is the whole numbers starting at one and less than 20. 
+
+\begin{enumerate}[label=\alph*),itemsep=2em, topsep=1em]
+\item $S=$
+\item[] Let event $A=$ the even numbers and event $B=$ numbers greater than 13.
+\item $A=$
+\item $B=$
+\item $P(A)$
+\item $P(B)$
+\item $A \text{ AND } B$ 
+\item $A \text{ OR } B$ 
+\item $P(A \text{ AND } B)$
+\item $P(A \text{ OR } B)$
+\item $A'$
+\item $P(A')$
+\item $P(A) + P(A')$
+\item $P(A|B)$
+\item $P(B|A)$
+\item Are the prior two probabilities equal? 
+\end{enumerate}
+
+## Problem 2 
+A fair, six-sided die is rolled. The sample space, $S$ is $\{1,2,3,4,5,6\}$. Describe each event and calculate its probability.
+
+\begin{enumerate}[label=\alph*),itemsep=2em, topsep=1em]
+\item Event $T=$ the outcome is 2
+\item Event $A=$ the outcome is even 
+\item Event $B=$ the outcome is less than 4 
+\item The complement of $A$ 
+\item $A \text { GIVEN } B$ 
+\item $B \text { GIVEN } A$ 
+\item $A \text { AND } B$ 
+\item $A \text{ OR } B$ 
+\item $A \text{ OR } B'$ 
+\item Event $N=$ the outcome is prime 
+\item Event $I=$ the outcome is seven
+\end{enumerate}
+
+## Problem 3 
+The table below describes the distribution of a random sample $S$ of 100 individuals, organized by gender and whether they are right or left-handed 
+
+\begin{tabular}{l l l}
+& \textbf{Right-Handed} & \textbf{Left-Handed} \\
+Males & 43 & 9 \\
+Females & 44 & 4 \\
+\end{tabular}
+
+Let's denote events $M=$ the subject is male, $F=$ the subject is female, $R=$ the subject is right-handed, $L=$ the subject is left handed. Compute the following probabilities. 
+
+\begin{enumerate}[label=\alph*),itemsep=2em, topsep=1em]
+\item $P(M)$
+\item $P(F)$
+\item $P(R)$
+\item $P(L)$ 
+\item $P(M \text{ AND } R)$
+\item $P(F \text{ AND } L)$
+\item $P(M \text{ OR } R)$
+\item $P(M \text{ OR } R)$ 
+\item $P(F \text{ OR } L)$
+\item $P(M')$
+\item $P(R|M)$ 
+\item $P(F|L)$
+\item $P(L|F)$
+\end{enumerate}

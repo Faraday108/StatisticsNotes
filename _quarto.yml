@@ -1,22 +1,87 @@
+number-depth: 2
+
+execute: 
+  cache: true
+  freeze: auto
+
 project:
   type: book
 
 book:
-  title: "StatisticsGuidedNotes"
+  title: "Statistics Notes"
   author: "Nathan Young"
   date: "1/27/2025"
   chapters:
     - index.qmd
-    - 5.0Introduction.qmd
-    - 5.1ContinuousProbabilityFunctions.qmd
+    - part: 1.0Introduction.qmd
+      chapters: 
+        - 1.1.qmd
+        #- 1.2.qmd
+        #- 1.3.qmd
+        #- 1.4.qmd
+    - part: 2.0Introduction.qmd
+      chapters: 
+        - 2.1.qmd
+        - 2.2.qmd
+        - 2.3.qmd
+        - 2.4.qmd
+        - 2.5.qmd
+        - 2.6.qmd
+        - 2.7.qmd
+    - part: 3.0Introduction.qmd
+      chapters: 
+        - 3.1.qmd
+        - 3.2.qmd
+        - 3.3.qmd
+        - 3.4.qmd
+       # - 3.5.qmd
+    # - part: 4.0Introduction.qmd
+    # - part: 5.0Introduction.qmd
+    #   chapters:
+    #     - 5.1.qmd
+    #     - 5.2.qmd
+    # - part: 6.0Introduction.qmd
+    #   chapters:
+    #     - 6.1.qmd
+    #     - 6.2.qmd
+    # - part: 7.0Introduction.qmd
+    #   chapters:
+    #     - 7.1.qmd
+    #     - 7.2.qmd
+    #     - 7.3.qmd
+    # - part: 8.0Introduction.qmd
+    #   chapters:
+    #     - 8.1.qmd
+    #     - 8.2.qmd
+    #     - 8.3.qmd
 
 # bibliography: references.bib
 
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    number-sections: false
+    include-in-header:
+        - file: macros.html
 
-editor: visual
+  pdf:
+    fig-pos: H
+    tbl-pos: H
+    number-sections: false
+    documentclass: scrreprt  # Allows more flexible margin control
+    include-in-header:
+      text: |
+        \usepackage[a4paper,margin=1in]{geometry}
+        \newcommand{\blank}{\underline{\phantom{00000}}}
+        \newcommand{\blanker}[1]{\underline{\makebox[#1]{}}}
+        \usepackage{float}
+        \usepackage{multirow}
+        \usepackage{makecell}
+        \usepackage{tikz}
+        \usetikzlibrary{backgrounds,fit,positioning}
+        \usepackage{enumitem}
+
+editor: source
+engine: knitr
+        
 

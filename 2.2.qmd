@@ -1,0 +1,108 @@
+---
+title: "2.2 - Histograms, Frequency Polygons, and Time Series Graphs"
+execute: 
+    echo: false
+---
+
+
+```{r setup}
+#| echo: false
+#| warning: false
+#| message: false
+
+source("book_functions.R")
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(gt)
+
+```
+
+## Histograms 
+
+* Much of the work in this book is displayed with histograms. 
+* Advantage: can readily display large data sets 
+* Consists of contiguous boxes, a horizontal axis (more or less a number line), and a vertical axis labeled with **frequency** or **relative frequency**. 
+    * Relative frequency is equal to frequency of observed value divided by total number of data values 
+    * If $f=$ frequency, $n=$ total number of data values, and $RF=$ relative frequency, then $RF=\frac{f}{n}$ 
+* Shows shape of the data - normal, skewed, and spread 
+
+### Constructing a histogram 
+
+* To construct a histogram, decided how many **bars** or **intervals** you want 
+* The width of a bar is called bin size, found dividing the range of the data by desired number of bins 
+* Number of observations in each bin = frequency 
+
+We won't need to construct a histogram by hand in this class, instead we can use RStudio to help us. 
+
+### Example 1 
+
+The following data are the heights (in inches, to nearest half inch) of 100 male semiprofessional soccer players. The heights are **continuous** since height is measured. 
+
+The following histogram displays the height on the $x$-axis and the relative frequency on the $y$-axis. 
+
+```{r}
+x <- c(60, 60.5, 61, 61, 61.5, 63.5, 63.5, 63.5, 64, 64, 64, 64, 64, 64, 64, 64.5, 64.5, 64.5, 64.5, 64.5, 64.5, 64.5, 64.5, 66, 66, 66, 66, 66, 66, 66, 66, 66, 66, 66.5, 66.5, 66.5, 66.5, 66.5, 66.5, 66.5, 66.5, 66.5, 66.5, 66.5, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67.5, 67.5, 67.5, 67.5, 67.5, 67.5, 67.5, 68, 68, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69, 69.5, 69.5, 69.5, 69.5, 69.5, 70, 70, 70, 70, 70, 70, 70.5, 70.5, 70.5, 71, 71, 71, 72, 72, 72, 72.5, 72.5, 73, 73.5, 74)
+
+bin_breaks <-  seq(59.95, 75.95, by=2)
+
+data.frame(x=x) %>% 
+    ggplot(aes(x=x)) + 
+    geom_histogram(aes(y = after_stat(count)/sum(after_stat(count))),breaks = bin_breaks, color = "black", fill = "lightgray") + 
+    theme_notes() + 
+    scale_x_continuous(breaks=bin_breaks)
+```
+
+## Frequency Polygons 
+
+* Analogous to line graphs 
+* Good for overlaying data
+* Data is divided into a number of intervals (think bins from histograms), giving $x$ values 
+* Find frequency of data within each interval, giving $y$ values 
+* Plot points for each interval, draw line segments to connect them. 
+
+### Example 2 
+
+The following frequency polygon was constructed by looking at the distribution of Calculus final test scores. 
+
+```{r}
+ggplot(iris, aes(x = Petal.Length)) + 
+    geom_freqpoly(bins = 10) + 
+    geom_point(stat = "bin", aes(y = after_stat(count)), bins = 10) +
+    theme_notes(show_axis_titles = TRUE) + 
+    labs(x = "Petal Length", 
+         y = "Frequency", 
+         title = "Length of Iris Petals")
+```
+
+Can separate out different data categories and lay on top: 
+
+```{r}
+ggplot(iris, aes(x = Petal.Length, color = Species)) + 
+    geom_freqpoly(bins = 10) + 
+    geom_point(stat = "bin", aes(y = after_stat(count)), bins = 10) +
+    theme_notes(show_axis_titles = TRUE) + 
+    labs(x = "Petal Length", 
+         y = "Frequency", 
+         title = "Length of Iris Petals")
+```
+
+## Time Series Graph 
+
+* Suppose we want to study temperature of a region for an entire month. 
+* One feature we may want to consider is time. Since date is paired with temperature, we can use time as an axis. 
+* We use both pieces of the paired data to construct the graph - one axis for time, one axis for data value. Typically points are connected by lines in order of occurrence. 
+
+### Example 3 
+
+The following time series shows the number unemployed (in thousands) on the $y$-axis, and the date on the $x$-axis. 
+
+```{r}
+ggplot(economics, aes(x = date, y = unemploy)) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  labs(title = "Unemployment in the U.S. (1967–2015)",
+       x = "Year", y = "Number unemployed (thousands)") +
+  theme_minimal(base_size = 14)
+
+```
+

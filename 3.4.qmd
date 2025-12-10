@@ -1,0 +1,85 @@
+---
+title: "3.4 - Contingency Tables"
+---
+
+{{< include preamble.qmd >}}
+
+* We have used **two-way tables** in prior chapters 
+* When used to calculate probabilities, it is often called a **contingency table** 
+    * Name comes from ease of calculating conditional probabilities 
+
+### Example 1 
+Suppose a study of speeding violations and drivers who use cell phones produced the following fictional data: 
+
+```{=latex}
+\begin{tabular}{p{4cm} | p{4cm} | p{4cm} | l}
+& \textbf{Speeding Violation in the Last Year} & \textbf{No Speeding Violation in the Last Year} & \textbf{Total} \\
+\hline
+Uses a cell phone while driving & 25 & 280 & 305 \\
+\hline
+Does not use a cell phone while driving & 45 & 405 & 450 \\
+\hline
+Total & 70 & 685 & 755
+\end{tabular}
+```
+
+Using the table, calculate the following probabilities: 
+
+\begin{enumerate}
+\item Find $P(\text{Person uses a cell phone while driving})$
+\vspace{3em}
+\item Find $P(\text{Person had no violations in the last year})$
+\vspace{3em}
+\item Find $P(\text{Person had no violation in the last year \emph{and} uses a cell phone while driving})$
+\vspace{3em}
+\item Find $P(\text{Person uses a cell phone while driving \emph{or} person had no violation in the last year})$
+\vspace{3em}
+\item Find $P(\text{Person uses a cell phone while driving \emph{given} person had a violation in the last year})$
+\vspace{3em}
+\item Find $P(\text{Person had no violation last year \emph{given} person does not use a cell phone while driving})$
+\vspace{3em}
+\end{enumerate}
+
+## Problem 1
+The table below shows the number of athletes who stretch before exercising and how many had injuries within the past year. 
+
+```{=latex}
+\begin{tabular}{p{4cm} | p{4cm} | p{4cm} | l}
+& \textbf{Injuries in Past Year} & \textbf{No Injury in Past Year} & \textbf{Total} \\
+\hline
+Stretches & 55 & 295 & 350 \\
+\hline
+Does not stretch & 231 & 219 & 450 \\
+\hline
+Total & 286 & 514 & 800
+\end{tabular}
+```
+
+\begin{enumerate}
+\item What is $P(\text{Athlete stretches before exercising})$
+\vspace{3em}
+\item What is $P(\text{Athlete stretches before exercises | no injury in the last year})$
+\vspace{3em}
+\end{enumerate}
+
+## Homework 
+
+The table below shows a random sample of 100 hikers and the areas of hiking they prefer. 
+
+```{=latex}
+\begin{tabular}{l | l | l | l | l}
+\textbf{Sex} & \textbf{The Coastline} & \textbf{Near Lakes and Streams} & \textbf{On Mountain Peaks} & \textbf{Total} \\
+\hline
+Female & 18 & 16 & & 45 \\
+\hline
+Male & & & 14 & 55 \\
+\hline
+Total & & 41 & & 
+\end{tabular}
+```
+
+\begin{enumerate} 
+\item Complete the table 
+\item Are the events \emph{being female} and \emph{preferring the coastline} independent events? 
+\vspace{3em}
+\end{enumerate}

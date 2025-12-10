@@ -1,0 +1,15 @@
+{
+  "hash": "0e808b1e95885be8eaf5759d9ea7f988",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"2.4 - Box Plots\"\nexecute: \n    echo: false\n---\n\n\n\n\n* **Box Plots**, also called **box-and-whisker plots**, give a good graphical image of the concentration of the data. \n* Also show how far the extreme values are from most of the data. \n* Constructed using the 5-number summary (min, $Q_1$, median, $Q_3$, and max)\n\nConsider the data set: 1, 1, 2, 2, 4, 6, 6.8, 7.2, 8, 8.3, 9, 10, 10, 11.5\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](2.4_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,5 @@
+---
+title: "book_template"
+---
+
+{{< include preamble.qmd >}}

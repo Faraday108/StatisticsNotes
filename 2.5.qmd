@@ -1,0 +1,79 @@
+---
+title: "2.5 - Measures of the Center of the Data"
+---
+
+{{< include preamble.qmd >}}
+
+The *center* of a data set is a way of describing location 
+
+* **Mean**, or average: (sum of data) / (number of data points) 
+* **Median**: middle of data, 50th percentile 
+* **Mode**: most frequently occurring 
+
+::: {.callout-tip icon="false"}
+Why do we have three different ways to measure the center? 
+Suppose that in a small town of 50 people, one person earns $5,000,000 per year and the other 49 each earn $30,000. Which is a better measure of the *center*: mean or median? 
+
+\vspace{4em}
+
+:::
+
+### More about the mean 
+
+* Sample mean is represented by: $\bar{x}$ (pronounced x-bar). 
+    * Sample mean is a statistic
+* Population mean is represented by : $\mu$ (pronounced mew) 
+    * Population mean is a parameter 
+* Law of large numbers (discussed more in a later chapter): 
+    * As $n$ (number of samples) increases, $\bar{x}$ approaches $\mu$ 
+
+### Mean of grouped frequency tables 
+
+* When only grouped data is given, you do not know individual values and can't compute an exact mean 
+* We can approximate the mean by: 
+    * Find the midpoint of each interval
+    * Multiply midpoint of each interval by frequency of each interval and all the products 
+    * Divide by the fum of all frequencies 
+
+$\text{Mean of frequency table}=\frac{\sum f\cdot m}{\sum f}$
+
+Where $f$ = frequency of the interval, $m$ = the midpoint of the interval, and $\sum$ (read as sigma) means to sum up. 
+
+### Example 1 
+
+A frequency table displaying Professor Blount's last statistics test is shown. Find the best estimate of the class mean. 
+
+::: {#tbl-tbl1 tbl-pos="h"}
+```{=latex}
+\begin{tabular}{c | c}
+\textbf{Grade Interval} & \textbf{Number of Students} \\
+\hline
+50-56.5 & 1 \\
+56.5-62.5 & 0 \\
+62.5-68.5 & 4 \\
+68.5-74.5 & 4 \\
+74.5-80.5 & 2 \\
+80.5-86.5 & 3 \\
+86.5-92.5 & 4 \\
+92.5-98.5 & 1
+\end{tabular}
+```
+
+:::
+
+## Homework 
+
+The following table gives the percentages of children under age 5 diagnosed with a medical condition. What is the best estimate for the mean percentage of children with the condition? 
+
+```{=latex}
+\begin{tabular}{p{5cm} | l}
+\textbf{Percentage of Children with the Condition} & \textbf{Number of Countries} \\
+\hline
+16-21.45 & 23 \\
+21.45-26.9 & 4 \\
+26.9-32.35 & 9 \\
+32.35-37.8 & 7 \\
+37.8-43.25 & 6 \\
+43.25-48.7 & 1
+\end{tabular}
+```

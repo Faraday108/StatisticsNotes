@@ -1,0 +1,121 @@
+---
+title: "1.4 - Experimental Design and Ethics"
+---
+
+{{< include preamble.qmd >}}
+
+Does aspirin reduce the risk of heart attacks? Is one brand of fertilizer more effective at growing roses than another? Is fatigue as dangerous to a driver as speeding? Questions like these are answered using randomized experiments. 
+
+The purpose of an experiment is to investigate the relationship between two variables. 
+
+* An **explanatory variable** affects a **response variable**. 
+    * In a randomized experiment, the researched manipulates the explanatory variable (different **treatments**) and observes the response variable 
+
+Examples of explanatory and response variables: 
+\vspace{1em}
+
+* Variables that can cloud a study are called **lurking variables** 
+    * To prove an explanatory variable is causing a change in the response, the explanatory variable must be isolated. 
+    * Accomplished by the **random assignment** of experimental units to treatment groups. Spreads potential lurking variables equally among groups. 
+
+Examples of lurking variables: 
+\vspace{1em}
+
+* **Confounding** occurs when the effects of multiple factors cannot be separated. 
+
+Examples of confounding: 
+\vspace{1em}
+
+* **Power of suggestion** - studies have shown the expectation of the study participant can be as important as the actual medication. Difficult to isolate effects of explanatory variable when participation requires a physical response. 
+    * To counter, a **control group** is created who is given a **placebo**, a treatment that cannot influence the response variable. 
+    * **Blinding** in a randomized experiment reduces bias by concealing who is receiving active vs placebo treatment. 
+    * In a **double-blind** experiment, both subjects and researchers are blinded. 
+
+Examples of placebo: 
+\vspace{1em} 
+
+* If it is not possible, or not ethical, to conduct an experimental study an **observational study** or **survey** can be used. 
+
+Examples where an observational study may be used: 
+\vspace{1em} 
+
+::: {.callout-note icon="false"}
+## Example 1
+
+Researchers want to investigate whether taking aspirin regularly reduces the risk of a heart attack. 400 men between the ages of 50 and 84 are recruited as participants. THe men are divided randomly into two groups: one group will take aspirin, and the other group will take a placebo. Each man takes one pill each day for three years, but he does not know whether he is taking aspirin or the placebo. At the end of the study, researchers count the number of men in each group who have had heart attacks. 
+
+\vspace{1em}
+
+Identify the: population, sample, experimental units, explanatory variable, response variable, and treaments. 
+
+\vspace{4em} 
+
+:::
+
+::: {.callout-note icon="false"} 
+## Example 2 
+
+The Smell \& Taste Treatment and Research Foundation conducted a study to investigate whether smell can affect learning. Subjects completed mazes multiple times while wearing masks. They completed the pencil and paper maze three times wearing floral-scented masks, and three times with unscented masks. Participants were assigned at random to wear the floral mask during the first three trials or during the last three trials. For each trial, researches recorded the time it took to complete the maze and the subject's impression of the mask's scent: positive, negative, or neutral. 
+
+a. Describe the explanatory and response variables in this study
+
+\vspace{1em} 
+
+b. What are the treatments? 
+
+\vspace{1em}
+
+c. Identify any lurking variables that could interfere with this study. 
+
+\vspace{1em}
+
+d. Is it possible to use blinding in this study? 
+
+\vspace{1em}
+
+:::
+
+::: {.callout-note icon="false"} 
+## Example 3 
+
+Describe the unethical behavior in each example and describe how it could impact the reliability of the resulting data. Explain how the problem should be corrected. 
+
+\vspace{1em}
+
+A researcher is collecting data in a community. 
+
+\vspace{1em}
+
+a. She selects a block where she is comfortable walking because she knows many of the people living on the street. 
+
+\vspace{2em} 
+
+b. No one seems to be home at four houses on her route. She does not record the addresses and does not return at a later time to try to find residents at home. 
+
+\vspace{2em} 
+
+c. She skips four houses on her route because she is running late for an appointment. When she gets home, she fills in the forms by selecting random answers from other residents in the neighborhood. 
+
+\vspace{2em}
+
+:::
+
+## Homework 
+
+1. Design an experiment. Identify the explanatory and response variables. Describe the population being studied and the experimental units. Explain the treatments that will be used and how they will be assigned to the experimental units. Describe how blinding and placebos may be used to counter the power of suggestion. 
+
+\vspace{5em}
+
+2. Discuss potential violations of the rule of requiring informed consent. 
+
+a. Inmates in a correctional facility are offered good behavior credits in return for participating in a study. 
+
+\vspace{2em}
+
+b. A research study is designed to investigate a new children's allergy medication. 
+
+\vspace{2em}
+
+c. Participants in a study are told the new medication being tested is highly promising, but they are not told that only a small portion of participants will receive the new medication. Others will receive placebo treatments and traditional treatments. 
+
+\vspace{2em}

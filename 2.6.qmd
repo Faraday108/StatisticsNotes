@@ -1,0 +1,108 @@
+---
+title: "2.6 - Skewness and the Mean, Median, and Mode"
+execute:
+    echo: false
+---
+
+{{< include preamble.qmd >}}
+
+Consider the following histograms: 
+
+:::: {layout="[[-0.25,0.5,-0.25],[0.5,0.5]]" fig-align="center"}
+
+:::{#top}
+```{r}
+data1 <- data.frame(x = c(4, 5,6,6,6,7,7,7,7,7,7,8,8,8,9,10))
+ggplot(data1, aes(x=x)) + 
+    geom_histogram(binwidth=1, color="black", fill="#00674E") + 
+    theme_minimal() + 
+    theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank()) + 
+    scale_x_continuous(breaks=4:10) + 
+    geom_vline(aes(xintercept=7), 
+               color="red") + 
+    annotate("text",x=8,y=5,color="red",label="Mean &\nMedian &\nMode\n= 7")
+```
+
+:::
+
+:::{#bottom_left}
+```{r}
+data2 <- data.frame(x = c(4,5,6,6,6,7,7,7,7,8))
+ggplot(data2, aes(x=x)) + 
+    geom_histogram(binwidth=1, color="black", fill="#00674E") + 
+    theme_minimal() + 
+    theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank()) + 
+    scale_x_continuous(breaks=4:8) + 
+    geom_vline(aes(xintercept=6.3), 
+               color="red") + 
+    annotate("text",x=5,y=5,color="red",label="Mean = 6.3") + 
+    geom_vline(aes(xintercept = 6.5), 
+               color="blue") + 
+    annotate("text",x=5,y=4.75,color="blue",label="Median = 6.5") + 
+    geom_vline(aes(xintercept = 7), 
+                   color="darkgreen") + 
+    annotate("text",x=5,y=4.5,color="darkgreen",label="Mode = 7")
+```
+:::
+
+:::{#bottom_right}
+```{r}
+data3 <- data.frame(x = c(6,7,7,7,7,8,8,8,9,10))
+ggplot(data3, aes(x=x)) + 
+    geom_histogram(binwidth=1, color="black", fill="#00674E") + 
+    theme_minimal() + 
+    theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank()) + 
+    scale_x_continuous(breaks=6:10) + 
+    geom_vline(aes(xintercept=7.7), 
+               color="red") + 
+    annotate("text",x=5,y=5,color="red",label="Mean = 7.7") + 
+    geom_vline(aes(xintercept = 7.5), 
+               color="blue") + 
+    annotate("text",x=5,y=4.75,color="blue",label="Median = 7.5") + 
+    geom_vline(aes(xintercept = 7), 
+                   color="darkgreen") + 
+    annotate("text",x=5,y=4.5,color="darkgreen",label="Mode = 7")
+```
+:::
+::::
+
+In Summary: 
+
+* Place the mean, median, and mode in order from smallest to largest for: 
+
+::: {layout-ncol=3}
+:::{#col1}
+**Symmetric**
+
+
+:::
+:::{#col2}
+**Skewed Right**
+
+
+:::
+:::{#col3}
+**Skewed Left** 
+
+
+:::
+:::
+
+\newpage
+
+## Homework 
+
+1. The median age of the US population in 1980 was 30.0 years. In 1991, the median age was 33.1 years. 
+
+    a. What does it mean for the median age to rise? 
+
+    \vspace{4em}
+
+    b. Give two reasons why the median age could rise. 
+
+    \vspace{4em}
+
+    c. For the median age to rise, is the actual number of children less in 1991 than it was in 1980? Why or why not? 

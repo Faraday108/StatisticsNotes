@@ -1,0 +1,18 @@
+---
+title: "Chapter 7 Introduction"
+---
+
+We keep having questions asking us to find the mean of a sample. Why are we so concerned about means? Firstly, they give us a grounds for comparison and secondly they are easy to calculate. This chapter focuses on means and the **central limit theorem**.\
+The **central limit theorem** is one of the most powerful and useful ideas in statistics. There are two forms, both concerned about drawing a finite sample size $n$ from a population with a known mean $\mu$ and standard deviation $\sigma$.
+
+1.  If we collect samples of size $n$ with a *large enough n*, calculate each sample's mean, and create a histogram of the means, the resulting histogram will tend to be approximately normal.\
+2.  If we collect samples of size $n$ that are *large enough*, calculate the sum of each sample and create a histogram, the resulting histogram will tend to be approximately normal.
+
+In either case, it does not matter what the distribution of the original population is, or whether you even need to know it. The important fact is that the distribution of sample means and the sums tend to follow a normal distribution. 
+
+The size of a sample, $n$, that is required to be *large enough* depends on the original distribution from which the samples are drawn. 
+
+* Usually a rule of at least 30 for sample size or
+* The data should come from a normal distribution. 
+
+Sampling should be done with replacement. 

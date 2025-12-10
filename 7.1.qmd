@@ -1,0 +1,122 @@
+---
+title: "7.1 The Central Limit Theorem for Sample Means"
+---
+
+{{< include preamble.qmd >}}
+
+::: {.callout-note appearance="simple"}
+Suppose $X$ is a random variable with a distribution that may be known or unknown (can be any distribution). Using a subscript that matches the random variable:
+
+-   $\mu_X$ = the mean of $X$
+-   $\sigma_X$ = the standard deviation of $X$
+
+If you draw random samples of size $n$, then as $n$ increases, the random variable $\bar{X}$ (the sample means), tends to be **normally distributed** and
+
+$$\bar{X} \sim N(\mu_X, \frac{\sigma_X}{\sqrt{n}})$$
+
+The **central limit theorem** for sample means says that if you keep drawing larger and larger samples and **calculating their means**, the sample means form their own **normal distribution**
+:::
+
+## Example 1
+
+A distribution has a mean of 90 and a standard deviation of 15. Samples of size $n=25$ are drawn randomly from the population.
+
+**Find the probability that the sample mean is between 85 and 92**
+
+-   Let $X=$ one value from the original unknown population, the probability question asks you to find a probability for the **sample mean**
+-   Let $\bar{X}=$ the mean of a sample of size 25. Because $\mu_X=90$, $\sigma_X=15$, and $n=25$:
+
+$$
+\begin{aligned}
+\bar{X} &\sim N(\mu_X, \frac{\sigma_X}{\sqrt{n}})\\
+\bar{X} &\sim N(90, \frac{15}{\sqrt{25}})
+\end{aligned}
+$$
+
+Find $P(85<\bar{x}<92)$
+
+```{r}
+#| label: fig-plot1
+#| echo: false
+#| message: false
+#| fig-height: 3
+#| fig-width: 4
+library(ggplot2)
+
+ggplot() + 
+    theme_minimal(base_size = 14) + 
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),axis.line = element_line(colour = "black")) + 
+    geom_area(aes(c(84,96)), stat = "function", fun = dnorm, fill = "#00674E", xlim = c(85,92), args = list(mean = 90, sd = 3)) +
+    geom_area(aes(c(84,96)), stat = "function", fun = dnorm, fill = "lightgrey", xlim = c(84,85),args = list(mean = 90, sd = 3)) +
+    geom_area(aes(c(84,96)), stat = "function", fun = dnorm, fill = "lightgrey", xlim = c(92,96),args = list(mean = 90, sd = 3)) + 
+    stat_function(fun = dnorm, geom = "function",args = list(mean = 90, sd = 3)) + 
+    scale_x_continuous(breaks = c(85,90,92), limits = c(84,96)) + 
+    scale_y_continuous(labels = NULL, limits = c(0,.2)) + 
+    labs(y = "", x = "")
+```
+
+
+::: {.callout-tip appearance="simple"}
+To find the probability that the mean is between 85 and 92: 
+
+* Using R -`pnorm`: `diff(pnorm(c(lower,upper), mean, sd))`. This calculates the probability of lower & upper and subtracts them with `diff`.
+
+* Using Desmos - type in `normaldist(mean, sd)` and select check box for "Find Cumulative Probability"
+
+* Using Desmos - can also type in `normaldist(mean, sd).cdf(lower, upper)`
+:::
+
+$P(85<\bar{x}<92)=$
+
+**Find the value that is two standard deviations above the expected value, 90, of the sample mean**
+
+value = $\mu_X$ + (# of STDEVs)($\frac{\sigma_X}{\sqrt{n}}$)
+value = 90 + 2*3 = 96. 
+
+### Question 1
+An unknown distribution has a mean of 45 and a standard deviation of 8. Samples of size $n=30$ are drawn randomly from the population. Find the probability that the sample mean is between 42 and 50. 
+
+::: {pdf}
+\vspace{4cm}
+:::
+
+:::: {html}
+::: {style="height: 100px;"}
+:::
+::::
+
+## Example 2 
+
+The length of time, in hours, it takes a group of people, 40 years old and older, to play one soccer match is normally distributed with a **mean of 2 hours** and a **standard deviation of 0.5 hours**. A **sample of size $n=50$** is drawn randomly from the population. Find the probability that the **sample mean** is between 1.8 hours and 2.3 hours. 
+
+* Let $X$ = the time, in hours, it takes to play one soccer match
+* Let $\bar{X}$ = the **mean** time, in hours, it takes to play one soccer match. 
+
+If $\mu_{X}= \underline{\phantom{00000}}, \sigma_X = \underline{\phantom{00000}}$, and $n = \underline{\phantom{00000}}$, then $\bar{X}\sim N(\underline{\phantom{00000}},\underline{\phantom{00000}})$ by the **central limit theorem for means**. 
+
+Find $P(\underline{\phantom{00000}}<\bar{x}<\underline{\phantom{00000}})$ = 
+
+### Question 2  
+
+The length of time taken on the SAT exam for a group of students is normally distributed with a mean of 2.5 hours and a standard deviation of 0.25 hours. A sample size of $n =60$ is drawn randomly from the population. Find the probability that the sample mean is between two hours and three hours. 
+
+::: {pdf}
+\vspace{4cm}
+:::
+
+:::: {html}
+::: {style="height: 100px;"}
+:::
+::::
+
+## Classwork Question 
+
+Suppose that the distance of fly balls hit to the outfield (in baseball) is normally distributed with a mean of 250 feet and a standard deviation of 50 feet. We randomly sample 49 fly balls. 
+
+a. If $\bar{X}=$ the average distance in feet for 49 fly balls, then $\bar{X} \sim \underline{\phantom{00000}}(\underline{\phantom{00000}},\underline{\phantom{00000}})$
+
+b. What is the probability that the 49 balls traveled an average of less than 240 feet? Sketch the graph. Shade the region corresponding to the probability. Find the probability. 
+
+c. Find the 80th percentile of the distribution of the average of 49 fly balls. 
+
+Note for percentile, use R: `qnorm(p, mean, sd)` or Desmos `normaldist(mean, sd).inversecdf(p)`

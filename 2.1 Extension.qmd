@@ -1,0 +1,123 @@
+---
+title: "Enhancing Your ggplot"
+subtitle: "Statistics Homework Extension"
+format:
+  html:
+    code-fold: true
+    theme: cosmo
+  pdf:
+    documentclass: article
+---
+
+## Overview
+
+In this assignment, you’ll build on your earlier bar chart by learning how to **enhance your ggplot visualizations** with color, labels, themes, and other styling options.
+
+You’ll start with a simple plot and gradually add improvements to make it more clear and visually appealing.
+
+---
+
+## Starter Code
+
+Begin with the basic bar chart you created in class.
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+
+data <- data.frame("Categories" = c("A", "B", "C", "D"), 
+                   "Values" = c(1, 3, 6, 2))
+
+ggplot(data, aes(x = Categories, y = Values)) + 
+    geom_col()
+```
+
+### Add color to bars 
+You can control the fill color and the outline color
+
+```{r}
+ggplot(data, aes(x = Categories, y = Values)) +
+    geom_col(fill = "skyblue", color = "black")
+```
+
+* `fill` changes the color inside the bars 
+* `color` changes the border color of each bar 
+
+### Add axis labels and a title 
+
+Use `labs()` to label axes and add a title 
+
+```{r}
+ggplot(data, aes(x = Categories, y = Values)) +
+    geom_col(fill = "lightblue", color = "black") +
+    labs(title = "My Sample Bar Chart",
+         x = "Category Type",
+         y = "Measured Value")
+```
+
+* `title`, `x`, `y` change the labels of the corresponding elements 
+
+### Change the theme 
+
+You can use built-in ggplot themes to change background and grid styles 
+
+```{r}
+ggplot(data, aes(x = Categories, y = Values)) +
+    geom_col(fill = "lightblue", color = "black") +
+    labs(title = "My Sample Bar Chart",
+         x = "Category Type",
+         y = "Measured Value") +
+    theme_minimal()
+```
+
+* `theme_classic()` - removes gridlines 
+* `theme_bw()` - black-and-white 
+* `theme_dark()` - dark background 
+
+### Adjust font and text size 
+
+You can further customize `theme()` to modify how texts appears 
+
+```{r}
+ggplot(data, aes(x = Categories, y = Values)) +
+    geom_col(fill = "lightblue", color = "black") +
+    labs(title = "My Sample Bar Chart",
+         x = "Category Type",
+         y = "Measured Value") +
+    theme_minimal() +
+    theme(
+        plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+        axis.title.x = element_text(size = 14),
+        axis.title.y = element_text(size = 14)
+    )
+```
+
+* `plot.title` controls size, style, and alignment 
+* `hjust = 0.5` centers the title 
+* `axis.title.x/y` adjust axis label text
+
+### Add labels to each bar 
+
+Use `geom_text()` to label each bar with its value 
+
+```{r}
+ggplot(data, aes(x = Categories, y = Values)) +
+    geom_col(fill = "lightblue", color = "black") +
+    geom_text(aes(label = Values), vjust = -0.3) +
+    labs(title = "My Sample Bar Chart",
+         x = "Category Type",
+         y = "Measured Value") +
+    theme_minimal()
+```
+
+* `geom_text()` adds numeric labels 
+* `vjust` adjusts how high or low the text appears (negative = below bar) 
+
+### Challenge 
+
+Put it all together to create your own best version of a bar chart. Use the following dataset to create a plot. 
+
+```{r}
+data <- iris %>% filter(Species == "setosa")
+```
+

@@ -1,0 +1,91 @@
+---
+title: "3.2 - Independent and Mutually Exclusive Events"
+---
+
+{{< include preamble.qmd >}}
+
+## Independent Events 
+* Two events $A$ and $B$ are independent if the knowledge that one occurred does not affect the chance the other occurs. 
+* Two events are independent if the following are true: 
+    * $P(A|B)=P(A)$
+    * $P(B|A)=P(B)$
+    * $P(A \text{ AND }B)=P(A)P(B)$
+* Examples: 
+    * Roll two die: does the outcome of the first roll affect the outcome of the second? 
+    * Flip a coin 10 times, does the outcome of the 11th flip depend on the prior 10? 
+* To show to events are independent, only one of the above conditions is necessary to calculate. 
+* If two events are *not* independent, they are said to be **dependent** 
+
+### Sampling marbles 
+Sampling may be done **with replacement** or **without replacement** 
+
+**With replacement** 
+A bag contains 4 blue and 3 white marbles. Josie draws one marble from the bag at random, records the color, and replaces the marble. 
+
+**Q1** The probability of drawing blue is: 
+
+Then Josie draws a marble from the bag a second time. 
+
+**Q2** The probability of drawing blue the second time is: 
+
+*Note*: if it not known whether $A$ and $B$ are independent or dependent, assume they are dependent until you can show otherwise. 
+
+## Mutually Exclusive Events 
+
+$A$ and $B$ are **mutually exclusive** if the cannot occur at the same time. That is, they do not share any outcomes and $P(A \text{ AND } B)=0$
+
+### Examples 
+
+1. What is an example of mutually exclusive events for flipping a coin? 
+
+\vspace{2em}
+
+2. What is an example of mutually exclusive events for drawing a card from a standard 52 card deck? 
+
+\vspace{2em}
+
+## In-Class Problems 
+
+\begin{enumerate}[itemsep=2em, topsep=1em]
+\item Flip two fair coins. Find the probabilities of the events: 
+\begin{enumerate}
+\item Let $F=$ the event of getting at most one tail. 
+\item Let $G=$ the event of getting two faces that are the same 
+\item Let $H=$ the event of getting a head on the first flip followed by a head or tail on the second flip. 
+\item Are $F$ and $G$ mutually exclusive? 
+\item Let $J=$ the event of getting all tails. Are $J$ and $H$ mutually exclusive 
+\end{enumerate}
+
+\item A student goes to the library. Let events $B=$ the student checks out a book and $D=$ the student checks out a DVD. Suppose that $P(B)=0.40$, $P(D)=0.30$, and $P(B \text{ AND }D)=0.20$ 
+\begin{enumerate}
+\item Find $P(B|D)$ 
+\vspace{2em}
+\item Find $P(D|B)$ 
+\vspace{2em}
+\item Are $B$ an $D$ independent? 
+
+\item Are $B$ and $D$ mutually exclusive? 
+\end{enumerate}
+
+\item A box has two balls, one white and one red. We select one ball, put it back in the box, and select a second ball (sampling with replacement). Find the probability of the following events. 
+\begin{enumerate}
+\item Let $F=$ the event of getting the white ball twice
+\vspace{2em}
+\item Let $G=$ the event of getting two balls of different colors 
+\vspace{2em}
+\item Let $H=$ the event of getting white on the first pick 
+\vspace{2em}
+\item Are $F$ and $G$ mutually exclusive? 
+\item Are $G$ and $H$ mutually exclusive? 
+\end{enumerate}
+\end{enumerate}
+
+## Homework 
+
+1. $E$ and $F$ are mutually exclusive events. $P(E)=0.4; P(F)=0.5$. Find $P(E|F)$ 
+2. $J$ and $K$ are independent events. $P(J|K)=0.3$. Find $P(J)$ 
+3. $U$ and $V$ are mutually exclusive events. $P(U)=0.26; P(V)=0.37$. Find the following: 
+    a. $P(U \text{ AND } V)$
+    b. $P(U|V)$ 
+    c. $P(U \text{ OR }V)$ 
+4. $Q$ and $R$ are independent events. $P(Q)=0.4$ and $P(Q \text{ AND }R)=0.1$. Find $P(R)$ 

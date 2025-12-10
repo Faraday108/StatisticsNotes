@@ -1,0 +1,126 @@
+---
+title: "7.3 - Using the Central Limit Theorem"
+---
+
+{{< include preamble.qmd >}}
+
+::: {.callout-note appearance="simple"}
+It is important to understand when to use the central limit theorem.
+
+-   Find the probability (or percentile) of the mean? CLT for the means
+-   Find the probability (or percentile) of sum or total? CLT for sums
+-   Find the probability of an individual value? do **not** use CLT, *use the distribution of its random variable*
+:::
+
+## Examples of the Central Limit Theorem
+
+### Law of Large Numbers
+
+-   If you take samples of larger and larger sizes from any population, then the mean $\bar{x}$ of the samples tends to get closer and closer to $\mu$.
+-   From the central limit theorem, we know as $n$ gets larger, the sample means follow a normal distribution. Recall the standard deviation of the sample means: $\bar{X}=\frac{\sigma}{\sqrt n}$
+    -   Thus, the larger $n$ gets, the smaller the standard deviation gets.
+
+### Example 1
+
+A study involving stress is conducted among students on a college campus. The stress scores follow a uniform distribution with the lowest score equal to one and the highest equal to five. Using a sample of 75 students find:
+
+a.  the probability that the *mean stress score* for the 75 students is less than 2
+
+b.  The 90th percentile for the *mean stress score* for the 75 students
+
+c.  the probability that the *total stress score* is less than 200
+
+d.  the 90th percentile for the *total stress score* for the 75 students
+
+-   Let $X =$ one stress score
+-   Let $\bar{X} =$ mean stress score of sample on parts (a) and (b)
+-   Let $\Sigma{X} =$ sum of stress scores of sample on parts (c) and (d)
+-   Recall for uniform distribution $X \sim U(a,b)$ that $\mu=\frac{a+b}{2}, \sigma=\sqrt{\frac{(b-a)^2}{12}}$
+    -   $\mu_X = \frac{1+5}{2}=3$
+    -   $\sigma_X = \sqrt{\frac{(b-a)^2}{12}}=\sqrt{\frac{(5-1)^2}{12}}=1.15$\
+-   Thus $\bar{X} \sim N(3, \frac{1.15}{\sqrt 75})$
+-   And $\Sigma{X} \sim N(75\cdot 3, \sqrt 75 \cdot 1.15)$
+
+**Solving (a)**\
+$P(\bar x < 2)$: `pnorm(q = 2, mean = 3, sd = 1.15/sqrt(75))` $=2.5\times10^{-14} \approx 0$
+
+**Solving (b)**\
+$P(\bar{x}<k)=0.90$: `qnorm(p = .9, mean = 3, sd = 1.15/sqrt(75))` $=3.17$
+
+**Solving (c)**\
+$P(\Sigma x < 200)$: `pnorm(q = 200, mean = 75*3, sd = sqrt(75)*1.15)` $=.006$
+
+**Solving (d)** $P(\Sigma{x} < k)=0.90$: `qnorm(p = .9, mean = 75*3, sd = sqrt(75)*1.15)` $=237.8$
+
+### Question 1
+
+Use the information from Example 1, but with a sample size of 55 to answer the following:
+
+a.  Find $P(\bar x < 7)$
+
+`r spacer(2)`
+
+b.  Find $P(\Sigma x  > 170)$
+
+`r spacer(2)`
+
+c.  Find the 80th percentile for the mean of 55 scores
+
+`r spacer(2)`
+
+d.  Find the 85th percentile for the sum off 55 scores
+
+`r spacer(2)`
+
+### Question 2
+
+Based on data from the National Health Survey, women between the ages of 18 and 24 have an average systolic blood pressure (in mm Hg) of 114.8 with a standard deviation of 13.1. Systolic blood pressure for women between the ages of 18 and 24 follows a normal distribution.
+
+a.  If one woman from this population is randomly selected, find the probability that her systolic blood pressure is greater than 120.
+
+b.  If 40 women from this population are randomly selected, find the probability that their mean systolic blood pressure is greater than 120.
+
+`r spacer(6)`
+
+### Question 3
+
+According to data from an aerospace company, the 757 airliner carries 200 passengers and has doors with a mean height of 72 inches. Assume for a certain population of men we have a mean of 69 inches and a standard deviation of 2.8 inches.
+
+-   Let $X = \blank$
+-   Let $\bar X = \blank$
+-   $X \sim N(\blank, \blank)$\
+-   $\bar X \sim N(\blank, \blank)$
+
+a.  What mean doorway height would allow 95 percent of men to enter the aircraft without bending?
+
+$P(x > k) = 0.95$
+
+`r spacer(2)`
+
+b.  Assume that half of the 200 passengers are men. What mean doorway height satisfies the condition that there is a 0.95 probability that this height is greater than the mean height of 100 men?\
+
+$P(\bar{x} > k) = 0.95$
+
+`r spacer(2)`
+
+c.  For engineers designing the 757, which result is more relevant: the height from part (a) or part (b)? Why?
+
+`r spacer(2)`
+
+## Homework
+
+Use the following to answer the next two questions: The cost of gasoline in the Bay Area once followed an unknown distribution with a mean of \$4.59 and a standard deviation of \$0.10. Sixteen gas stations from the Bay Area are randomly chosen. We are interested in the average cost of gasoline for the 16 gas stations.
+
+1.  What's the approximate probability that the average price for 16 gas stations is more than \$4.69?
+
+    a.  almost zero
+    b.  0.1587
+    c.  0.0943
+    d.  unknown
+
+2.  Find the probability that the average price for 30 gas stations is less than \$4.55.
+
+    a.  0.6554
+    b.  0.3446
+    c.  0.9858
+    d.  0

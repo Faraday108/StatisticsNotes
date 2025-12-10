@@ -1,0 +1,107 @@
+---
+title: "A Population Proportion"
+---
+
+{{< include preamble.qmd >}}
+
+* The proportion of voters who vote for a candidate
+* The proportion who own personal computers
+* The proportion that stocks go up/down
+
+* How do we create a confidence interval for a proportion instead of a mean? 
+
+::: {.callout-note appearance="simple" title="Population Proportion"}
+
+* How do you know you are dealing with a proportion problem? 
+    * You have a categorical variables with 2 options: success/failure, yes/no
+
+* We need the **Error Bound for a Proportion (EBP)**  
+    * $EBP = (z_{\alpha/2})\left(\sqrt{\frac{p'q'}{n}}\right)$
+    * $p'=$ the *estimated proportion* of successes (a point estimate for $p$, the true proportion)
+    * $p' = \frac{x}{n}$
+        * $x$ is the number of successes
+        * $n$ is the size of the sample 
+    * $q'=1-p'$
+
+:::
+
+Note that the error bound is very similar to the error bound for a mean, except that the "appropriate standard deviation" is different. 
+    * For a mean we used $\sigma/\sqrt n$
+    * For a proportion we use $\sqrt{\frac{p'q'}{n}}$
+
+Also note, the confidence interval equation above can only be used if the number of successes *and* the number of failures are both greater than 5. 
+
+### Example 1  
+
+Suppose that a market research firm is hired to estimate the percentage of adults living in a large city who have cell phones. Five hundred randomly selected adult residents in this city are surveyed to determine whether they have cell phones. Of the 500 people surveyed, 421 responded yes, they own cell phones. Using a 95 percent confidence level, compute a confidence interval estimate for the true proportion of adult residents of this city who have cell phones. 
+
+#### Method 1 - step by step  
+* $EBP = (z_{\alpha/2})\left(\sqrt{\frac{p'q'}{n}}\right)$
+    * $p' = x/n = \blank/\blank$
+    * $q' = 1-p' = \blank/\blank$
+    * $n = \blank$
+    * $\alpha = \blank$
+        * $z_{\alpha/2} = z_{\blank}$
+        * `qnorm(1-    )` = 
+
+$$
+\begin{aligned}
+EBP &= (\blank)\left(\sqrt{\frac{\phantom{00000000}}{}}\right)\\
+&= \\
+\text{Confidence Interval} &: (p'-EBP, p'+EBP)\\
+&:(\blank,\blank)
+\end{aligned}
+$$
+
+#### Method 2 - `prop.test`
+
+Instead of computing the EBP, the following function may be used: 
+
+`prop.test(x = successes, n = trials, conf.level = 0.95, correct = FALSE)`
+
+* Note, the `prop.test()` function does not assume the data follows a normal distribution so the answer will be slightly different. It uses the more accurate (for proportion data) binomial distribution.  
+
+```{r}
+prop.test(x = 421, n = 500, conf.level = .95, correct = FALSE)$conf.int
+```
+
+### Question 1  
+
+Suppose 250 randomly selected people are surveyed to determine whether they own tablets. Of the 250 surveyed, 98 reported owning tablets. Using a 95 percent confidence level, compute a confidence interval estimate for the true proportion of people who own tablets. 
+
+`r spacer(6)`
+
+## *Plus-Four* Confidence Interval for *p*  
+
+* Proportion confidence intervals struggle with low sample sizes and proportions close to 0 or 1
+* The **Plus-Four** method is: 
+    * Good for small sample sizes
+    * Good for confidence intervals greater than or equal to 90%
+
+::: {.callout-note appearance="simple" title="Plus-Four Method"}
+
+* Add 4 to *n*
+* Add 2 to *x*
+* This pretends we have four additional observations, two of which are successes. 
+
+:::
+
+### Example 2 
+
+A random sample of 25 statistics students was asked: "Have you used a product in the past week?" Six students reported using the product within the past week. Use the plus-four method to find a 95% confidence interval for the true proportion of statistics students who use the product weekly. 
+
+* $n = \blank$
+* $x = \blank$
+* $p' = \frac{x+2}{n+4}=\frac{\phantom{00000}}{}$
+* $EBP = (z_{\alpha/2})\left(\sqrt{\frac{p'q'}{n}}\right)$
+* $EBP = \blank \sqrt{\frac{\phantom{00000}}{}}$
+* $p' - EPB = \blank$
+* $p' + EBP = \blank$
+
+We are 95 percent confident that the true proportion of all statistics students who use the product is between $\blank$ and $\blank$. 
+
+### Question 2
+
+Out of a random sample of 65 freshman at State University, 31 students have declared their majors. Use the plus-four method to find a 95% confidence interval for the true proportion of freshman at State University who have declared their majors. 
+
+`r spacer(6)`

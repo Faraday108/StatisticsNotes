@@ -1,0 +1,12 @@
+---
+title: "Chapter 8 Introduction"
+---
+
+{{< include preamble.qmd >}}
+
+* Suppose you were trying to determine the mean rent of a 2-bedroom apartment in your town. You check several rents listed, and average them together and obtain a *point estimate* of the true mean. Eg the average rent in Pittsburgh in 2025 is $1330.  
+* If you are trying to determine percentage of times you make a basket in basketball, you might count the number of shots you make and divide by the number of shots attempted. In this case, you obtain a *point estimate* for the true proportion. Eg your percentage of shots made is 75%.  
+* Sample data is used to draw conclusions about an unknown population. This part of statistics is called **inferential statistics** as opposed to **descriptive statistics** we have studied till now.  
+* *The sample data help us make an estimate of a population* **parameter**. Eg, if you were to continue taking shots, what is your true percentage?
+* The point estimate is likely not exactly equal to the population parameter, so we construct an interval estimate called a *confidence interval*. Eg I'm 90% confident that my true proportion of shots made is between 70% and 80%.   
+* Recall, if we collect a sample we can find a sample mean $\bar x$ and a sample standard deviation $s$. These are both estimates of the population mean $\mu$ and population standard deviation $\sigma$. 

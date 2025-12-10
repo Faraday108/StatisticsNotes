@@ -1,0 +1,11 @@
+```{r setup, echo=FALSE}
+#| include: false
+
+source("book_functions.R")
+
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(ggplot2)
+  library(gt)
+})
+```

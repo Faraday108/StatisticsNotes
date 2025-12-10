@@ -1,0 +1,19 @@
+{
+  "hash": "1dcc8600adedbc710a2dacacae2565ca",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"3.4 - Contingency Tables\"\n---\n\n\n\n\n* We have used **two-way tables** in prior chapters \n* When used to calculate probabilities, it is often called a **contingency table** \n    * Name comes from ease of calculating conditional probabilities \n\n### Example 1 \nSuppose a study of speeding violations and drivers who use cell phones produced the following fictional data: \n\n```{=latex}\n\\begin{tabular}{p{4cm} | p{4cm} | p{4cm} | l}\n& \\textbf{Speeding Violation in the Last Year} & \\textbf{No Speeding Violation in the Last Year} & \\textbf{Total} \\\\\n\\hline\nUses a cell phone while driving & 25 & 280 & 305 \\\\\n\\hline\nDoes not use a cell phone while driving & 45 & 405 & 450 \\\\\n\\hline\nTotal & 70 & 685 & 755\n\\end{tabular}\n```\n\nUsing the table, calculate the following probabilities: \n\n\\begin{enumerate}\n\\item Find $P(\\text{Person uses a cell phone while driving})$\n\\vspace{3em}\n\\item Find $P(\\text{Person had no violations in the last year})$\n\\vspace{3em}\n\\item Find $P(\\text{Person had no violation in the last year \\emph{and} uses a cell phone while driving})$\n\\vspace{3em}\n\\item Find $P(\\text{Person uses a cell phone while driving \\emph{or} person had no violation in the last year})$\n\\vspace{3em}\n\\item Find $P(\\text{Person uses a cell phone while driving \\emph{given} person had a violation in the last year})$\n\\vspace{3em}\n\\item Find $P(\\text{Person had no violation last year \\emph{given} person does not use a cell phone while driving})$\n\\vspace{3em}\n\\end{enumerate}\n\n## Problem 1\nThe table below shows the number of athletes who stretch before exercising and how many had injuries within the past year. \n\n```{=latex}\n\\begin{tabular}{p{4cm} | p{4cm} | p{4cm} | l}\n& \\textbf{Injuries in Past Year} & \\textbf{No Injury in Past Year} & \\textbf{Total} \\\\\n\\hline\nStretches & 55 & 295 & 350 \\\\\n\\hline\nDoes not stretch & 231 & 219 & 450 \\\\\n\\hline\nTotal & 286 & 514 & 800\n\\end{tabular}\n```\n\n\\begin{enumerate}\n\\item What is $P(\\text{Athlete stretches before exercising})$\n\\vspace{3em}\n\\item What is $P(\\text{Athlete stretches before exercises | no injury in the last year})$\n\\vspace{3em}\n\\end{enumerate}\n\n## Homework \n\nThe table below shows a random sample of 100 hikers and the areas of hiking they prefer. \n\n```{=latex}\n\\begin{tabular}{l | l | l | l | l}\n\\textbf{Sex} & \\textbf{The Coastline} & \\textbf{Near Lakes and Streams} & \\textbf{On Mountain Peaks} & \\textbf{Total} \\\\\n\\hline\nFemale & 18 & 16 & & 45 \\\\\n\\hline\nMale & & & 14 & 55 \\\\\n\\hline\nTotal & & 41 & & \n\\end{tabular}\n```\n\n\\begin{enumerate} \n\\item Complete the table \n\\item Are the events \\emph{being female} and \\emph{preferring the coastline} independent events? \n\\vspace{3em}\n\\end{enumerate}",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

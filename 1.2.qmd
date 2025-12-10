@@ -1,0 +1,536 @@
+---
+title: "1.2 - Data, Sampling, and Variation in Data and Sampling"
+---
+
+{{< include preamble.qmd >}}
+
+* Data may come from a population or from a sample.  
+* Lowercase letters like $x$ or $y$ generally are used to represent data values. 
+
+### Types of Data  
+1. Qualitative (categorical) - puts the data in a category 
+    * Hair color, blood type 
+    * $\blanker{5cm}$ 
+    * $\blanker{5cm}$ 
+    * $\blanker{5cm}$ 
+2. Quantitative (numerical) - result of counting or measuring 
+    * Discrete - result of counting, can only take certain numeric values 
+        * number of cars 
+        * number of shoes 
+        * $\blanker{5cm}$ 
+        * $\blanker{5cm}$ 
+    * Continuous - result of measuring 
+        * distance between points 
+        * height 
+        * $\blanker{5cm}$ 
+        * $\blanker{5cm}$ 
+
+::: {.callout-note icon="false"}
+## Example 1
+1. The data are the number of machines in a gym. You sample five gyms. One gym has 12 machines, one gym has 15 machines, one gym has 10 machines, one gym has 22 machines, and the other gym has 20 machines. What type of data is this? 
+
+*Answer*: 
+
+2. The data are the areas of lawns in square feet. You sample five houses. The areas of the lawns are 144 sq. ft., 160 sq. ft., 190 sq. ft., 180 sq. ft., and 210 sq. ft. What type of data is this? 
+
+*Answer*: 
+::: 
+
+::: {.callout-note icon="false"}
+### Example 2 
+Work collaboratively to determine the correct data type: quantitative continuous, quantitative discrete, or qualitative. Hint: data that are discrete often start with the words *the number of*. 
+
+* the number of pairs of shoes you own 
+* the type of car you drive 
+* the distance from your home to the nearest grocery store 
+* the number of classes you take per school year 
+* the type of calculator you use 
+* weights of sumo wrestlers 
+* number of correct answers on a quiz 
+* IQ scores 
+
+:::
+
+::: {.callout-note icon="false"}
+### Example 3 
+A statistics professor collects information about the classification of her students as freshman, sophomores, juniors, or seniors. The data she collects are summarized in the pie chart in @fig-pc1 What type of data does this graph show? 
+
+```{r}
+#| echo: false
+#| message: false
+#| label: fig-pc1
+#| out.width: "60%"
+library(ggplot2)
+library(tidyverse)
+library(scales)
+
+data <- data.frame(
+    Year = factor(c("Freshman", "Sophomore", "Junior","Senior"),levels = c("Senior", "Junior", "Sophomore", "Freshman")), 
+    value = c(60, 30, 7, 3)
+)
+
+ggplot(data, aes(x="", y=value, fill=Year)) + 
+    geom_bar(stat="identity",width=1, color="white")+
+    coord_polar("y", start=0) + 
+    theme_void()
+```
+
+:::
+
+::: {.callout-note icon="false"}
+### Example 4 
+A large school district keeps data of the number of students who receive test scores on an end of the year standardized exam. The data collected is summarized in the histogram below. The class boundaries are 50 to less than 60, 60 to less than 70, 70 to less than 80, 80 to less than 90, and 90 to less than 100. What type of data does this graph show? 
+
+```{r}
+#| echo: false
+#| message: false
+#| label: fig-bc1
+#| out.width: "60%"
+
+data <- data.frame(Grade = rnorm(1000, 75, 10))
+data <- subset(data, Grade >= 0 & Grade <= 100)
+data$bin <- cut(data$Grade, 
+                breaks = c(0,50, 60, 70, 80, 90, 100.1), 
+                right = FALSE, 
+                labels = c("<49","50-59","60-69","70-79","80-89","90-100"))
+
+ggplot(data, aes(x=bin)) + 
+    geom_bar(fill = "skyblue", color="black", width=1) + 
+    labs(x = "End of Year Test Score", y = "Number of Students", title = "Distribution of End of Year Test Scores") +
+    theme_minimal()
+```
+
+:::
+
+## Qualitative Data Discussion 
+Below are tables comparing the number of part-time and full-time students at De Anza College and Foothill College enrolled for the spring 2010 quarter. 
+
+```{r}
+#| echo: false
+
+data <- data.frame(College = c(rep("De Anza College", 2), rep("Foothill College", 2)), Attendance = rep(c("Full-time","Part-time"),2), Number = c(9200, 13296, 4059, 10124), Percent = c("40.90%","59.10%","28.60%","71.40%"))
+```
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrr | lrr}
+\multicolumn{3}{c|}{\textbf{De Anza College}} & \multicolumn{3}{c}{\textbf{Foothill College}} \\
+\hline
+\textbf{Attendance} & \textbf{Number} & \textbf{Percent} &
+\textbf{Attendance} & \textbf{Number} & \textbf{Percent} \\
+\hline
+Full-time  & 9200  & 40.90\% & Full-time  & 4059  & 28.60\% \\
+Part-time  & 13296 & 59.10\% & Part-time  & 10124 & 71.40\% \\
+\end{tabular}
+\caption{College attendance by enrollment status.}
+\end{table}
+
+* Tables are a good way of organizing and displaying data, but graphs can help understanding the data. 
+* Two graphs commonly used for qualitative data: 
+    1. **Pie Chart**: categories of data are shown as wedges; must add to 100%. Useful when showing parts of a whole. See @fig-pc2 
+    2. **Bar Graph**: length of bar for each category shows number of percent of individuals in each. Useful when comparing categories or showing change over time. See @fig-bc2 
+    3. **Pareto Chart**: consists of bars that are sorted into order by category size (largest to smallest) 
+
+```{r}
+#| echo: false
+#| label: fig-pc2
+#| out.width: "60%"
+data <- data %>%
+  group_by(College) %>%
+  mutate(Percent2 = Number / sum(Number)) %>%
+  ungroup() %>%
+  mutate(
+    Attendance = factor(Attendance, levels = c("Full-time","Part-time")),
+    label = percent(Percent2, accuracy = 0.1)
+  )
+
+ggplot(data, aes(x = 1, y = Percent2, fill = Attendance)) +
+  geom_bar(stat = "identity", width = 1, color = "white") +
+  geom_text(aes(label = label), position = position_stack(vjust = 0.5)) +  # <-- centers labels
+  coord_polar(theta = "y", start = 0, direction = -1) +  # start at 12 o'clock (optional)
+  facet_wrap(~College) +
+  labs(title = "College Attendance by Enrollment Status") +
+  theme_void(base_size = 14) +
+  theme(
+    strip.text = element_text(size = 14, face = "bold"),
+    legend.position = "bottom"
+  )
+```
+
+```{r}
+#| echo: false
+#| label: fig-bc2
+#| out.width: "60%"
+ggplot(data, aes(x = College, fill = Attendance, y = Number)) + 
+    geom_bar(position="dodge", stat="identity") + 
+    geom_text(aes(label=Number), position = position_dodge(width = .9), vjust = -0.5) + 
+    coord_cartesian(clip = "off") + 
+    theme_minimal()
+```
+
+## Percentages that add to more or less than 100% 
+* Sometimes percentages do not add to 100% 
+* Often happens if categories overlap 
+
+### More than 100% 
+
+::: {#tbl-tbl2 tbl-pos="h"}
+```{=latex}
+\begin{tabular}{p{7cm} | l}
+\textbf{Characteristic/Category} & \textbf{Percent} \\
+\hline
+Students studying technical subjects & 40.9\% \\
+Students studying non-technical subjects & 48.6\% \\
+Students who intend to transfer to a four-year educational institution & 61.0\% \\
+\hline
+TOTAL & 150.5\% \\
+\end{tabular}
+```
+
+De Anza College Year 2010
+:::
+
+**Question** What overlap do you think is happening in the @tbl-tbl2? 
+
+`r spacer(2)`
+
+```{r}
+#| echo: false
+#| label: fig-bc3
+#| out.width: "60%"
+#| fig-cap: "De Anza College Year 2010"
+library(scales)
+data <- data.frame(x=c("Students who intend to transfer to a 4-year educational institution","Students studying non-technical subjects","Students studying technical subjects","All students"), 
+                   percent=c(61, 48.6, 40.9, 100), 
+                   labels=c("61.0%","48.6%","40.9%","100.0%"))
+
+data <- data %>% mutate(x=factor(data$x,levels=data$x))
+
+ggplot(data=data,aes(x=x, y=percent)) + 
+    geom_col(fill = "skyblue", color="black") + 
+    scale_x_discrete(label=label_wrap(15)) + 
+    labs(x="",y="Percent")+
+    geom_text(aes(label=labels), position = position_dodge(width = .9), vjust = -0.5) + 
+    coord_cartesian(clip = "off") +
+    theme_minimal()
+```
+
+### Less than 100% - Omitting Categories/Missing Data 
+* @tbl-tbl3 is missing the *Other/Unknown* category 
+* Since this causes frequencies to not add to 100%, use a bar graph and not a pie chart. 
+
+::: {#tbl-tbl3 tbl-pos="h"}
+```{=latex}
+\begin{tabular}{l | l | l}
+& \textbf{Frequency} & \textbf{Percent} \\
+\hline
+Asian & 8794 & 36.1\% \\
+Black & 1412 & 5.8\% \\
+Filipino & 1298 & 5.3\% \\
+Hispanic & 4180 & 17.1\% \\
+Native American & 146 & .6\% \\
+Pacific Islander & 236 & 1.0\% \\
+White & 5978 & 24.5\% \\ 
+\hline
+TOTAL & 22044 out of 24382 & 90.4\% out of 100\% \\
+\end{tabular}
+```
+
+Ethnicity of Students at De Anza College Fall Term 2007
+:::
+
+* @fig-bc4 shows a bar graph of the table not showing an *other/unknown* category. 
+* @fig-bc5 includes the other/unknown category and is important to consider when thinking about what the data tells us. 
+    * The two graphs in @fig-bc4 and @fig-bc5 are difficult to understand visually. 
+* @fig-bc6 is a Pareto chart where bars are sorted from largest to smallest and is easier to read and interpret. 
+
+\newpage
+
+::: {layout="[[1,1], [1,1]]"}
+```{r}
+#| label: fig-bc4
+#| fig-cap: "Bar - initial plot of table"
+#| echo: false
+#| out.width: "90%"
+#| fig-pos: "H"
+data <- data.frame(
+  group = c("Asian", "Black", "Filipino", "Hispanic", 
+            "Native American", "Pacific Islander", "White", "Other/ Unknown"),
+  percent = c(36.1, 5.8, 5.3, 17.1, 0.6, 1.0, 24.5, 9.6)
+)
+
+data %>% 
+    filter(group != "Other/ Unknown") %>%
+ggplot(aes(x=group, y=percent)) + 
+    geom_col(fill = "skyblue", color="black") +
+    labs(x="",y="Percent")+
+    geom_text(aes(label=percent(percent/100)), position = position_dodge(width = .9), vjust = -0.5) + 
+    scale_x_discrete(label=label_wrap(10)) + 
+    coord_cartesian(clip = "off") + 
+    theme_minimal()
+```
+
+```{r}
+#| label: fig-bc5
+#| fig-cap: Bar with Other/Unknown
+#| echo: false
+#| out.width: "90%"
+#| fig-pos: "H"
+data %>%
+    ggplot(aes(x=group, y=percent)) + 
+    geom_col(fill = "skyblue", color="black") +
+    labs(x="",y="Percent")+
+    geom_text(aes(label=percent(percent/100)), position = position_dodge(width = .9), vjust = -0.5) + 
+    scale_x_discrete(label=label_wrap(10)) +
+    coord_cartesian(clip = "off") + 
+    theme_minimal()
+```
+
+```{r}
+#| label: fig-bc6
+#| fig-cap: Pareto
+#| echo: false
+#| out.width: "90%"
+#| fig-pos: "H"
+data <- data %>% 
+  mutate(group2 = factor(group, levels = group[order(-percent)]))
+
+data %>% 
+    ggplot(aes(x=group2, y=percent)) + 
+    geom_col(fill = "skyblue", color="black") +
+    labs(x="",y="Percent")+
+    geom_text(aes(label=percent(percent/100)), position = position_dodge(width = .9), vjust = -0.5) + 
+    scale_x_discrete(label=label_wrap(10)) + 
+    coord_cartesian(clip = "off") + 
+    theme_minimal()
+```
+:::
+
+## Two Way Tables (AKA Contingency Tables) 
+* The following will reference @tbl-tbl4
+* Show data from two categorical variables at once (gender and sport) 
+* Show **joint frequencies** are the values that make up the body of the table ($\blanker{4cm}$) 
+* Show **marginal frequencies** from *total* column/row ($\blanker{4cm}$) 
+    * **marginal distribution**: fraction or percent that total is of overall sample ($\blanker{4cm}$) 
+* Can be used to calculate **conditional distributions** 
+    * The distinction between a marginal distribution and a *conditional distribution* is that only a subset of the population is considered. 
+    * What is the proportion of women who play football? 
+
+::: {#tbl-tbl4 tbl-pos="h"}
+```{=latex}
+\begin{tabular}{l | c | c | c | c}
+& \textbf{Football} & \textbf{Basketball} & \textbf{Tennis} & \textbf{Total}\\
+\hline
+Men & 20 & 8 & 2 & 30 \\
+Women & 5 & 7 & 8 & 20 \\
+\hline
+Total & 25 & 15 & 10 & 50 \\
+\end{tabular}
+```
+
+Two way table - Types of college sports played by men and women
+:::
+
+::: {.callout-note icon="false"}
+### Example 5 
+
+::: {#tbl-tbl5 tbl-pos="h"}
+```{=latex}
+\begin{tabular}{l | c | c | c | c}
+& \textbf{Soccer} & \textbf{Basketball} & \textbf{Lacrosse} & \textbf{Total}\\
+\hline
+Men & 4 & 12 & 4 & 20 \\
+Women & 8 & 8 & 4 & 20 \\
+\hline
+Total & 12 & 20 & 8 & 40 \\
+\end{tabular}
+```
+
+Two way table - Types of college sports played by men and women
+:::
+
+1. Using the data from @tbl-tbl5, calculate the marginal distributions of college sports for the people surveyed. 
+
+`r spacer(2)` 
+
+2. Using the data from @tbl-tbl5, calculate the conditional distributions for the subpopulation of women who play college sports. 
+
+`r spacer(2)`
+:::
+
+## Sampling 
+* Gathering information about an entire population often costs too much or is virtually impossible, instead we use a sample of the population. 
+    * *A sample should have the same characteristics as the population it is representing* - a **representative** sample. 
+
+**Methods of obtaining representative samples**: 
+
+* Note each method has pros and cons 
+
+1. *Random Sampling*: Each member of the population has an equal chance of being selected for the sample 
+    * **Simple Random Sample** - give everyone in the population a number, then use a random number generator to pick numbers 
+        * Using TI: *Math -> PRB -> randInt(lower, upper, samples)* 
+        * Using R: `sample(lower:upper, samples)` 
+    * **Stratified Sample** - divide population into strata, then randomly chose a proportional sample from each stratum. 
+        * e.g. $\blanker{5cm}$
+    * **Cluster Sample** - divide population into clusters, then randomly chose $n$ clusters to be your sample. 
+        * e.g. $\blanker{5cm}$ 
+    * **Systematic sample** - chose every $n$th person. 
+
+2. *Non-Random Sampling Methods*: may be good in some cases and highly biased in others 
+    * **Convenience Sample** - use results that are readily available. 
+        * e.g. $\blanker{5cm}$ 
+
+::: {.callout-note icon="false"}
+### Example 6 
+A study is done to determine the average tuition that private high school students pay per semester. Each student in the following samples is asked how much tuition they paid for the fall semester. What is the type of sampling in each case? 
+
+a. A sample of 100 high school students is taken by organizing the students' names by classification (freshman, sophomore, junior, or senior) and then selecting 25 students from each. $\blanker{5cm}$ 
+b. A random number generator is used to select a student from the alphabetical listing of all high school students in the fall semester. Starting with that student, every 50th student is chosen until 75 students are included in the sample. $\blanker{5cm}$ 
+c. A completely random method is used to select 75 students. Each high school student in the fall semester has the same probability of being chosen at any stage of the sampling process. $\blanker{5cm}$ 
+d. The freshman, sophomore, junior, and senior years are numbered one, two, three, and four respectively. A random number generator is used to pick two of those years. All students in those two years are in the sample. $\blanker{5cm}$ 
+e. An administrative assistant is asked to stand in front of the library one Wednesday and to ask the first 100 students he encounters what they paid for tuition the fall semester. Those 100 students are the sample. $\blanker{5cm}$ 
+
+::: 
+
+## Critical evaluation of studies 
+* We need to evaluate the statistical studies we read about critically and analyze them before accepting the results of the studies. Common problems include: 
+
+* Biased (nonrepresentative) samples - not including all characteristics of sample 
+* Self-selected samples - only including people who chose to respond 
+* Sample size issues - too small may be unreliable 
+* Undue influence - collecting data or asking questions in a way that influence responses 
+* Non-response or refusal to participate - often strong negative or positive opinions participate 
+* Correlation vs causality - a relationship between variables (correlation) does not mean one causes the other (causality) 
+* Self-funded or self-interest studies - is the study impartial? 
+* Misleading use of data - poor graphs, incomplete data, lack of context 
+
+::: {.callout-note icon="false"}
+### Exercise 1
+As a class, determine whether or not the following samples are representative. If they are not, discuss the reasons. 
+
+1. To find the average GPA of all students in a high school, use all honor students at the university as the sample. 
+
+`r spacer(1)` 
+
+2. To find out the most popular cereal among young people under the age of 10, stand outside a large supermarket for three hours and speak to every twentieth child under 10 who enters the supermarket. 
+
+`r spacer(1)` 
+
+3. To find the average annual income of all adults in the United States, sample U.S. representatives. Create a cluster sample by considering each state as a stratum (group). By using simple random sampling, select states to be part of the cluster. Then survey every U.S. representative in the cluster. 
+
+`r spacer(1)`
+
+4. To determine the proportion of people taking public transportation to work, survey 20 people in New York City. Conduct the survey by sitting in Central Park on a bench and interviewing every person who sits next to you. 
+
+`r spacer(1)` 
+
+5. To determine the average cost of a two-day stay in a hospital in Massachusetts, survey 100 samples across the state using simple random sampling. 
+
+`r spacer(1)` 
+
+::: 
+
+### Variation in Data 
+* Variation is present in any set of data 
+    * In one study, eight 16oz cans were measured and contained the following amount of liquid: $15.8, 16.1, 15.2, 14.8, 15.8, 15.9, 16.0, 15.5$. 
+    * Measurements can vary because of user error or the actual amount differs. 
+* Large sample size can reduce variation 
+
+::: {.callout-note icon="false"}
+### Exercise 2 
+Complete the dice rolling experiment posted to Blackbaud. 
+
+:::
+
+\newpage
+
+## Homework 
+
+*Use the following information to answer questions 1-4*. A study was done to determine the age, number of times per week, and the duration (amount of time) of residents using a local park in San Antonia, Texas. The first heouse in the neighborhood around the park was selected randomly, and then the resident of every eighth house in the neighborhood around the park was interviewed. 
+
+1. The sampling method was: 
+    a. simple random 
+    b. systematic 
+    c. stratified 
+    d. cluster 
+
+2. Duration (amount of time) is what type of data? 
+    a. qualitative (categorical) 
+    b. quantitative discrete 
+    c. quantitative continuous 
+
+3. The colors of the houses areound the park are what kind of data? 
+    a. qualitative (categorical) 
+    b. quantitative discrete 
+    c. quantitative continuous 
+
+4. The population is $\blanker{5cm}$ 
+
+Use @tbl-tbl6 to answer the following questions 
+
+::: {#tbl-tbl6 tbl-pos="h"}
+```{=latex}
+\begin{tabular}{l | l | l | l}
+\textbf{Year} & \textbf{Total Number of Deaths} & \textbf{Year} & \textbf{Total Number of Deaths}\\
+\hline
+2000 & 231 & 2007 & 712 \\
+2001 & 21,357 & 2008 & 88,011 \\
+2002 & 11,685 & 2009 & 1,790 \\
+2003 & 33,819  & 2010 & 320,120 \\
+2004 & 228,802 & 2011 & 21,953 \\
+2005 & 88,011 & 2012 & 768 \\
+2006 & 6,605 & & \\
+ & & \textbf{Total} & \textbf{832,856}
+\end{tabular}
+```
+
+Total number of deaths worldwide as a result of earthquakes from 2000-2012
+:::
+
+5. What is the proportion of deaths between 2007 and 2012? 
+
+`r spacer(1)`
+
+6. What percent of deaths occurred before 2001? 
+
+`r spacer(1)`
+
+7. What is the percent of deaths that occurred in 2003 or after 2010? 
+
+`r spacer(1)`
+
+8. What is the fraction of deaths that happened before 2012? 
+
+`r spacer(1)`
+
+9. What kind of data is the number of deaths? 
+
+`r spacer(1)`
+
+10. Earthquakes are quantified according to the amount of energy they produce (examples include 2.1, 5.0, 6.7). What kind of data is that? 
+
+`r spacer(1)`
+
+11. What contributed to the large number of deaths in 2010? In 2004? Explain. 
+
+`r spacer(1)`
+
+12. If you were asked to present these data in an oral presentation, what type of graph would you chose to present and why? 
+
+`r spacer(1)`
+
+For the following four exercises, determine the type of sampling used (simple random, stratified, systematic, cluster, or convenience). 
+
+13. A group of test subjects is divided into 12 groups; then four of the groups are chosen at random. 
+
+`r spacer(1)`
+
+14. A market researcher polls every tenth person who walks into a store. 
+
+`r spacer(1)`
+
+15. The first 50 people who walk into a sporting event are polled on their television preferences. 
+
+`r spacer(1)`
+
+16. A computer generates 100 random numbers, and 100 people whose names correspond with the numbers on the list are chosen. 

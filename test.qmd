@@ -1,0 +1,19 @@
+---
+title: "testing"
+---
+
+{{< include preamble.qmd >}}
+
+Question 1: 
+
+`r spacer(2)`
+
+Question 2: 
+
+`r spacer(4)`
+
+Question 3:
+
+`r spacer2()`
+
+Question 4:

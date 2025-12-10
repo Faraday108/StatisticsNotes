@@ -1,0 +1,15 @@
+{
+  "hash": "5a5c3385a1b57db8273092644d482835",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"2.6 - Skewness and the Mean, Median, and Mode\"\nexecute:\n    echo: false\n---\n\n\n\n\nConsider the following histograms: \n\n:::: {layout=\"[[-0.25,0.5,-0.25],[0.5,0.5]]\" fig-align=\"center\"}\n\n:::{#top}\n\n::: {.cell}\n::: {.cell-output-display}\n![](2.6_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\n:::\n\n:::{#bottom_left}\n\n::: {.cell}\n::: {.cell-output-display}\n![](2.6_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n:::\n\n:::{#bottom_right}\n\n::: {.cell}\n::: {.cell-output-display}\n![](2.6_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n:::\n::::\n\nIn Summary: \n\n* Place the mean, median, and mode in order from smallest to largest for: \n\n::: {layout-ncol=3}\n:::{#col1}\n**Symmetric**\n\n\n:::\n:::{#col2}\n**Skewed Right**\n\n\n:::\n:::{#col3}\n**Skewed Left** \n\n\n:::\n:::\n\n\\newpage\n\n## Homework \n\n1. The median age of the US population in 1980 was 30.0 years. In 1991, the median age was 33.1 years. \n\n    a. What does it mean for the median age to rise? \n\n    \\vspace{4em}\n\n    b. Give two reasons why the median age could rise. \n\n    \\vspace{4em}\n\n    c. For the median age to rise, is the actual number of children less in 1991 than it was in 1980? Why or why not? ",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

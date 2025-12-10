@@ -1,0 +1,169 @@
+---
+title: "2.3 - Measures of the Location of the Data"
+execute: 
+    echo: false
+---
+
+{{< include preamble.qmd >}}
+
+* **Percentiles** - divide the ordered data set into hundreds 
+    * 90th percentile means that a value is greater than or equal to 90% of values in the data 
+    * Eg: 90th percentile on a standardized test means you scored better than or equal to 90% of test takers. 
+* **Median** - Divide data in halves, the middle value, or average of middle two, is the median 
+* Quartiles are special percentiles - divide the data into quarters 
+    * $\mathbf{Q_1}=$ median of lower half, 25th percentile 
+    * $\mathbf{Q_2}=$ median, 50th percentile 
+    * $\mathbf{Q_3}=$ median of upper half, 75th percentile 
+* **Interquartile Range** = $\mathbf{Q_3}-\mathbf{Q_1}$, indicates the spread of the middle half of the data. 
+    * The IQR can help identify outliers. **A value suspected to be an outlier if it is $1.5 \times IQR$ below the 25th percentile or $1.5 \times IQR$ above the 75th percentile. 
+
+**Note**: A potential outlier is a data point that is significantly different from the other data points. These special data points may be errors or some kind of abnormality, or they may be a key to understanding the data.
+
+::: {.callout-note icon="false"}
+### Example 1 
+
+For the following real estate prices, calculate the IQR and determine if any prices are outliers. Prices are in dollars. 
+
+389,950; 230,500; 158,000; 479,000; 639,000; 114,950; 5,500,000; 387,000; 659,000; 529,000; 575,000;
+488,800; 1,095,000
+
+```{r}
+x  <-  c(389950, 230500, 158000, 479000, 639000, 114950, 5500000, 387000, 659000, 529000, 575000, 488800, 1095000)
+
+cat("Ordered Data:")
+print(sort(x))
+```
+**Median**: 
+
+**Q_1**: 
+
+**Q_3**: 
+
+**IQR**: 
+
+**Q1 - 1.5IQR**: 
+
+**Q3 + 1.5IQR**: 
+
+Are any houses priced below $Q_1-1.5IQR$? 
+
+Are any houses priced above $Q_3+1.5IQR$? 
+
+:::
+
+### Five number summary
+
+A five number summary is used to construct a box plot (section 2.4). Includes: 
+
+* Min, Q1, Median, Q3, and Max 
+
+::: {.callout-note icon="false"}
+### Example 2
+For the following two data sets of test scores, find the five number summary and IQR. Are there any potential outliers? 
+
+A: 69, 96, 81, 79, 65, 76, 83, 99, 89, 67, 90, 77, 85, 98, 66, 91, 77, 69, 80, 94
+
+B: 90, 72, 80, 92, 90, 97, 92, 75, 79, 68, 70, 80, 99, 95, 78, 73, 71, 68, 95, 100
+
+\vspace{8em}
+
+:::
+
+## Finding the *k*th percentile 
+
+* Instead of finding the 25th, 50th, or 75th percentiles ($Q_1$, $Q_2$, and $Q_3$), what if we need an arbitrary percentile? 
+* There are multiple formulas that can be used for this, our textbook favors: 
+
+$i=\frac{k}{100}(n+1)$ 
+
+Where: 
+
+* $k$ = the $k^\text{th}$ percentile, may or may not be part of data 
+* $i$ = the index (rank or position of a data value) 
+* $n$ = the total number of data values 
+
+Using the formula, if $i$ is an integer, then the $k^\text{th}$ percentile is the data in the $i^\text{th}$ position in the ordered data set. 
+If $i$ is not an integer, then round $i$ up and down to the nearest integers and average the two data values in these positions in the data set. 
+
+::: {.callout-note icon="false"}
+### Example 3
+
+:::
+
+
+In R, there are a total of 9 different quantile algorithms that can be used, the default uses a different method than the textbook so answers in R may be different than those outlined by the text. 
+If you're curious about the formulas, you can read the documentation using `?quantile` and reading about the type argument. 
+From Example 3, we can use the following to get similar percentiles: 
+
+```{r}
+#| echo: true 
+# Create data vector
+x <- c(18, 21, 22, 25, 26, 27, 29, 30, 31, 33, 36, 37, 41, 42, 47, 52, 55, 57, 58, 62, 64, 67, 69, 71, 72, 73, 74, 76, 77)
+
+# 70th percentile
+quantile(x, .7)
+
+# 83rd percentile
+quantile(x, .83)
+```
+Note that the value for the 83rd percentile is different than what we got by hand. This is because our by-hand method takes the average of the two values on either side of the calculated index, while R interpolates between them. 
+
+### Finding the percentile of a value in a data set
+
+* Let's say I got an 83 on a test and I want to know what my percentile was. 
+* Let $x$ = the number of data values from the bottom of the data up to (not including) the value I want to find the percentile at 
+* Let $y$ = the number of data values equal to the data value for which you want to find the percentile 
+* Let $n$ = the total number of data points 
+* The percentile of a value is then: $\frac{x+.5y}{n}\cdot(100)$ rounded to nearest integer. 
+
+::: {.callout-note icon="false"}
+### Example 4
+Listed are 29 ages for Academy Award-winning best actors in order from smallest to largest:
+18, 21, 22, 25, 26, 27, 29, 30, 31, 33, 36, 37, 41, 42, 47, 52, 55, 57, 58, 62, 64, 67, 69, 71, 72, 73, 74, 76, 77 
+
+a. Find the percentile for 58
+
+\vspace{5em}
+
+b. Find the percentile for 25
+
+\vspace{5em} 
+
+:::
+
+## Interpretation of Percentiles, Quartiles, and Median 
+
+* Percentiles indicate relative standing of a data value 
+* Low percentiles correspond to low data values 
+* High percentiles correspond to high data values. 
+* The interpretation of whether a percentile is *good* or *bad* depends on context. 
+    * Examples of good percentiles: 
+
+\vspace{4em}
+
+## Homework 
+
+1. Listed are 29 ages for Academy Award-winning best actors in order from smallest to largest:
+18, 21, 22, 25, 26, 27, 29, 30, 31, 33, 36, 37, 41, 42, 47, 52, 55, 57, 58, 62, 64, 67, 69, 71, 72, 73, 74, 76, 77
+
+a. Find the $40^\text{th}$ percentile 
+
+\vspace{4em}
+
+b. Find the $78^\text{th}$ percentile 
+
+\vspace{4em}
+
+2. Jesse was ranked $37^\text{th}$ in his graduating class of 180 students. At what percentile is Jesse's ranking? 
+
+\vspace{4em}
+
+3. On an exam, would it be more desirable to earn a grade with a high or a low percentile? Explain. 
+
+\vspace{4em}
+
+4. In a survey collecting data about the salaries earned by recent college graduates, Li found that her salary was in the 78th
+percentile. Should Li be pleased or upset by this result? Explain. 
+
+\vspace{4em}
+

@@ -1,0 +1,15 @@
+{
+  "hash": "e588b9316956cd983c5aafed87b83f5d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Chapter 1: Sampling and Data\"\n---\n\n\n\n\n\n\n\n\n\n## Introduction  \n- You might wonder \"when and where will I use statistics?\"\n- We see statistics every day in **news**, **TV**, and **online**  \n  (examples: ________, ________, ________).\n- As statistics are presented throughout your life, you need to know how to analyze the information thoughtfully.  \n- Learning statistics helps with real-life decisions such as:  \n  - $\\blanker{5cm}$\n  - $\\blanker{5cm}$\n\n- Many careers require statistics, including:\n  - $\\blanker{5cm}$\n  - $\\blanker{5cm}$\n  - $\\blanker{5cm}$\n\n- In this chapter, we’ll learn:  \n  - The basics of **probability** and **statistics**  \n  - How they work **together**  \n  - How to tell **good data** from **bad** data\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

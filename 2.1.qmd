@@ -1,0 +1,236 @@
+---
+title: "2.1 - Stem-and-Leaf Graphs (Stemplots), Line Graphs, and Bar Graphs"
+---
+
+```{r setup, echo=FALSE}
+#| file: book_functions.R
+#| warning: false
+#| message: false
+
+source(book_functions.R)
+library(dplyr)
+library(ggplot2)
+library(gt)
+```
+
+## Stem-and-Leaf 
+* Good choice when data sets are small 
+* Divide each observation into a stem (leading digit(s)) and a leaf (a final significant digit) 
+
+::: {.callout-note icon="false"}
+### Example 1
+```{r}
+#| echo: false
+x <- c(33,42,49,53,55,61,63,67,68,68,69,69,72,73,74,78,80,83,88,88,88,90,92,94,94,94,96,100)
+```
+
+
+* For Mr. Young's hypothetical Precalculus class, scores for the first exam were as follows: `r x` 
+* To create the stem and leaf plot, the stems are the 10's place and the leaf is the units place. 
+
+
+```{r stem and leaf 1}
+#| echo: false 
+data.frame(stem = x %/% 10, 
+                        leaf = x %% 10) %>%
+    group_by(stem)  %>%
+    summarize(leaf = paste(leaf, collapse = " ")) %>%
+    knitr::kable()
+```
+
+a. What is the most frequent letter grade? 
+
+b. What is the maximum score? 
+:::
+
+An **outlier** or **extreme value** is an observation that does not fit the rest of the data. Some outliers are mistakes, while others indicate something unusual is happening. We will cover this in more detail later. 
+
+\newpage
+
+### Side-by-side stem-and-leaf 
+
+* A **side-by-side stem-and-leaf** allows comparison of two data sets in two columns where two sets of leaves share the same stem. 
+* The following plot shows presidential age at inauguration and age at death. 
+
+```{r stem and leaf 2}
+#| echo: false
+library(rvest)
+library(dplyr)
+library(stringr)
+
+# URL of the Wikipedia page
+url <- "https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States_by_age"
+
+# Read the page
+page <- read_html(url)
+
+# Find all tables on the page
+tables <- page %>% html_table(fill = TRUE)
+
+age_tbl <- tables[[1]]
+
+# Clean up column names (example)
+age_tbl2 <- age_tbl %>%
+  # rename columns to nicer names (adjust names based on what scraped)
+  rename(
+    President = `President`,
+    Born = `Born`,
+    Age_at_start = `Age atstart of presidency`,
+    Age_at_end = `Age atend of presidency`,
+    Post_presidency = `Post-presidencytimespan`,
+    Died = 7,
+    Age = 8
+  ) %>%
+    slice(-1) %>%
+    mutate(Age_at_start = str_extract(Age_at_start, "^\\d+")) %>%  
+    mutate(Age_at_start = as.numeric(Age_at_start)) %>% 
+    mutate(Age = str_extract(Age, "^\\d+")) %>% 
+    mutate(Age = as.numeric(Age)) 
+
+AI_tbl <- data.frame("AI" = age_tbl2$Age_at_start %% 10, 
+                     "stem" = age_tbl2$Age_at_start %/% 10) %>% 
+    group_by(stem) %>%
+    summarize("Age at Inauguration" = paste(sort(AI), collapse = " "))
+              
+AD_tbl <- data.frame("AD" = age_tbl2$Age %% 10, 
+                     "stem" = age_tbl2$Age %/% 10) %>%
+    group_by(stem) %>%
+    summarize("Age at Death" = paste(sort(AD), collapse = " "))
+
+full_join(AI_tbl, AD_tbl, by = "stem") %>%
+    relocate("Age at Inauguration") %>%
+    knitr::kable(align="rcl")
+```
+
+a. What decade of age have the most presidents been inaugurated in? 
+
+b. What decade of age have the most presidents died in? 
+
+c. What decade of age have the fewest presidents died in? 
+
+::: {.callout-note icon="false"} 
+### Problem 1 
+The data below shows the distances (in miles) from the homes of high school students to the school. Create a stemplot using the following data and identify any outliers: 
+
+0.5, 0.7, 1.1, 1.2, 1.2, 1.3, 1.3, 1.5, 1.7, 1.7, 1.8, 1.9, 2.0, 2.2, 2.5, 2.6, 2.8, 2.8, 2.8, 3.5, 3.8, 4.4, 4.8, 4.9, 5.2, 5.5, 5.7, 5.8, 8.0
+
+\vspace{15em} 
+:::
+
+## Line Graph 
+* Different varieties - can have any number of variables on the $x$-axis and $y$-axis 
+* In the following, the ***x*****-axis** consists of **data values** and the ***y*****-axis** consists of **frequency points** which are connected using line segments 
+
+### Example 3 
+In a survey, 40 parents were asked how many times per week a teenager must be reminded to do his or her chores. The results are shown below: 
+
+```{r}
+#| echo: false 
+#| out-width: "50%"
+data3 <- data.frame("num" = c(0,1,2,3,4,5),"freq" = c(2,5,8,14,7,4))
+data3_names <- c("Number of Times Teenager is Reminded","Frequency")
+
+data3 %>% ggplot(aes(x=num, y=freq)) + 
+    geom_line(color = "blue") + 
+    geom_point() + 
+    labs(x = data3_names[1], y = data3_names[2]) + 
+    scale_y_continuous(breaks = seq(1, 16, by=2)) + 
+    theme_minimal()
+```
+
+::: {.callout-note icon="false"} 
+### Problem 2 
+In a survey, 40 people were asked how many times per year they had their car in the shop for repairs. The results are shown in @tbl-tbl1. Construct a line graph
+
+::: {#tbl-tbl1 tbl-pos="h"}
+```{=latex}
+\begin{tabular}{l|l}
+\textbf{Number of times in shop} & \textbf{Frequency} \\
+\hline
+0 & 7 \\
+1 & 10 \\
+2 & 14 \\
+3 & 9 \\
+\end{tabular}
+```
+
+
+:::
+
+```{r}
+#| echo: false 
+
+ggplot(data=data.frame(x=c(0,3),y=c(0,15)),aes(x=x,y=y)) +
+    geom_blank() +
+    geom_hline(yintercept = 0, color = "black", linewidth = 0.4) +
+    geom_vline(xintercept = 0, color = "black", linewidth = 0.4) +
+    theme_notes() + 
+    scale_y_continuous(breaks = seq(0,15,by=2))
+```
+
+:::
+
+## Bar Graph 
+
+* Consists of bars separated from each other, can be vertical or horizontal. 
+
+::: {.callout-note icon="false"} 
+### Problem 3 
+
+By the end of 2011, a social media site had more than 146 million users in the United States. @tbl-tbl2 shows three age-groups, the number of users in each age-group, and the proportion (percentage) of users in each age group. Construct a bar graph using this data. 
+
+::: {#tbl-tbl2 tbl-pos="h"}
+```{=latex}
+\begin{tabular}{l|l|l}
+\textbf{Age-Groups} & \textbf{Number of Site Users} & \textbf{Proportion(\%) of Site Users} \\
+\hline
+13-25 & 65,082,280 & 45\% \\
+26-44 & 53,300,200 & 36\% \\
+45-64 & 27,885,100 & 19\% \\
+\end{tabular}
+```
+
+:::
+
+
+```{r}
+#| echo: false 
+age_data <- data.frame(
+  age_group = c("13–25", "26–44", "45–64"),
+  value = c(0, 0, 50)
+)
+
+ggplot(age_data, aes(x = age_group, y = value)) +
+  # Empty bars (invisible height, just for structure)
+  geom_col(fill = NA, color = NA, width = 0.6) +
+  # Blank theme
+  theme_minimal(base_size = 16) + 
+  scale_y_continuous(breaks = seq(0,50,by=5)) + 
+    labs(x="Ages", y="Proportion(%)")
+
+```
+
+:::
+
+## Two-way Table 
+
+* @tbl-tbl3 is a two-way table showing the types of pets owned by men and women. 
+
+::: {#tbl-tbl3 tbl-pos="h"}
+```{=latex}
+\begin{tabular}{l|l|l|l|l}
+ & \textbf{Dogs} & \textbf{Cats} & \textbf{Fish} & \textbf{Total} \\
+\hline
+Men & 4 & 2 & 2 & 8 \\
+Women & 4 & 6 & 2 & 12 \\
+Total & 8 & 8 & 4 & 20 \\
+\end{tabular}
+```
+
+:::
+
+Given this table, calculate the conditional distributions for the subpopulation of men who own each pet type. 
+
+* Men who own dogs: 
+* Men who own cats: 
+* Men who own fish: 

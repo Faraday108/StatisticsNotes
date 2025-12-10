@@ -1,0 +1,139 @@
+---
+title: "8.2  - A single population mean using the Student's t-Distribution"
+---
+
+{{< include preamble.qmd >}}
+
+## Student's t-Distribution
+
+* In practice, we rarely know the population standard deviation $\sigma$ so how can we calculate a confidence interval?  
+* Historically, when sample size $n$ was large, the unknown $\sigma$ did not bother statisticians: they used sample standard deviation $s$ to approximate $\sigma$. 
+* However for small $n$, a confidence interval based on $s$ is not accurate.  
+    * Discovered by William Gosset (1876-1937) while working at Guinness. 
+    * His small sample of barley and hops did not produce accurate confidence intervals when replacing $\sigma$ with $s$. 
+    * He discovered that the normal distribution was not accurate, the actual distribution depended on sample size. 
+    * He published results under pen name *Student* so the distribution was dubbed the **Student's *t*-distribution** 
+
+::: {.callout-note appearance="simple" title="Student's *t*-Distribution"}
+
+* Used whenever we are using $s$ as estimate for $\sigma$.
+* If you draw random sample of size $n$ from population with approximately normal distribution with mean $\mu$ and unknown standard deviation $\sigma$: 
+    * Calculate *t*-score $t=\frac{\bar x - \mu}{s/\sqrt n}$
+    * The *t*-score will follow a *Student's t-distribution* with $n-1$ degrees of freedom
+
+* The exact shape depends on the degrees of freedom (df); as the df increase, the distribution looks more like the normal distribution. 
+
+```{r}
+#| label: fig-plot1
+#| echo: FALSE
+#| message: false
+#| fig-height: 3
+#| fig-width: 4
+gg_t(df = c(1,2,5,Inf))
+```
+
+In summary: 
+*If the population standard deviation is not known* the error bound for a population mean is: 
+
+* EBM = $(t_{\alpha/2})\left(\frac{s}{\sqrt n}\right)$
+* $t_{\alpha/2}$ is the $t$-score with area to the right equal to $\alpha/2$
+* Use $df = n-1$ degrees of freedom
+* $s$ = sample standard deviation
+* Confidence interval: $\bar x - EBM, \bar x + EBM)$
+
+:::
+
+### Example 1
+
+Suppose you do a study of acupuncture to determine how effective it is in relieving pain. You measure sensory rates for 15 subjects with the results given. Use the sample data to construct a 95% confidence interval for the mean sensory rate for the population (assumed normal) from which you took the data. 
+
+```{r}
+#| label: Example 1 Data
+sensory_rate <- c(8.6, 9.4, 7.9, 6.8, 8.3, 7.3, 9.2, 9.6, 8.7, 11.4, 10.3, 5.4, 8.1, 5.5, 6.9)
+```
+
+#### Solution step-by-step  
+To find the confidence interval you need the sample mean $\bar x$, sample standard deviation $s$, and sample size $n$, and $t_{\alpha/2}$. In R, the data is saved as a vector `name <- c(data)`. In Desmos, the data is saved as a list `name = [data]`. 
+
+* $\bar x =$ `mean(sensory_rate)` 
+    * Desmos: mean(name)
+
+```{r}
+xbar <- mean(sensory_rate); xbar
+```
+
+* $s=$ `sd(sensory_rate)` 
+    * Desmos: stdev(name)
+
+```{r}
+s <- sd(sensory_rate); s
+```
+
+* $n=$ `length(sensory_rate)` 
+    * Desmos: length(name)
+
+```{r}
+n <- length(sensory_rate); n
+```
+* $t_{\alpha/2}=$ `qt(.975,14)` 
+    * Desmos: tdist(df); select compute = bounds, region = left, and $P(x\le t\text{-value})=0.975$
+    * Note this gives 2.5% area in the top and 2.5% area in the bottom
+
+```{r}
+ta2 <- qt(0.975,14); ta2
+```
+
+* Thus to find the EBM:
+
+$$
+\begin{aligned}
+EBM &= (t_{\alpha/2})\left(\frac{s}{\sqrt n}\right) \\
+&= (2.145)(\frac{1.6722}{\sqrt {15}})\\
+&= 0.926
+\end{aligned}
+$$
+
+* And the confidence interval is then: 
+
+$$
+(\bar x - EBM, \bar x + EBM)\\
+(8.2267 - 0.926,8.2267 - 0.926)\\
+(7.30,9.15)
+$$
+
+* So we can say "we estimate with 95% confidence that the true population mean sensory rate is between 7.30 and 9.15."
+
+#### Solution with R
+
+* We can take a data set and use a built-in function called `t.test` to find the confidence interval (as well as other information we haven't covered). 
+
+* Use `t.test(data, conf.level = 0.95)$conf.int`  
+    * We can exclude the `$conf.int` and get more information but we care primarily about the confidence interval here. 
+
+```{r}
+t.test(sensory_rate, conf.level = 0.95)$conf.int
+```
+
+### Question 1 
+
+You do a study of hypnotherapy to determine how effective it is in increasing the number of hours of sleep subjects get each night. You measure hours of sleep for 12 subjects with the following results. Construct a 95 percent confidence interal for the mean number of hours slept for the population (assumed normal) from which you took the data. 
+
+```{r}
+#| label: Question 1 data
+
+sleep <- c(8.2, 9.1, 7.7, 8.6, 6.9, 11.2, 10.1, 9.9, 8.9, 9.2, 7.5, 10.5)
+```
+
+`r spacer(6)`
+
+### Question 2 
+
+A random sample of statistics students was asked to estimate the total number of hours they spend watching television in an average week. The responses are recorded below. Use the following sample data to construct a 90% confidence interval for the mean number of hours statistics students will spend watching television in one week. 
+
+```{r}
+#| label: Question 2 data
+
+tv_hours <- c(0,3,1,20,9,5,10,1,10,4,14,2,4,4,5)
+```
+
+`r spacer(6)`

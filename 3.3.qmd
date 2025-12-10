@@ -1,0 +1,91 @@
+---
+title: "3.3 - Two Basic Rules of Probability"
+---
+
+{{< include preamble.qmd >}}
+
+In calculating probability, two basic rules are considered when determining whether two events are independent or mutually exclusive. 
+
+## The Multiplication Rule 
+
+If two events are defined on a **sample space**, then $P(A \text{ AND } B)=P(B)P(A|B)$ 
+
+If $A$ and $B$ are *independent*, then $P(A|B)=P(A)$. In this special case, 
+
+$$
+\begin{aligned}
+P(A \text{ AND } B)&=P(B)P(A|B) \\
+&=P(B)P(A)
+\end{aligned}
+$$
+
+### Example 
+A bag contains four green marbles, three red marbles, and two yellow marbles. Diya draws two marbles from the bag without replacement. The probability that she draws a yellow marble and then a green marble is: 
+
+$P(A \text{ AND } B)=P(B)P(A|B)$ 
+
+\vspace{3em}
+
+## The Addition Rule
+If $A$ and $B$ are defined on a sample space, then $P(A \text{ OR } B)=P(A)+P(B)-P(A \text{ AND }B)$ 
+
+### Examples 
+* Given a standard deck of cards, draw one card. 
+
+**Example 1** let $H=$ the card is a heart and $J=$ the card is a jack. These events are not mutually exclusive because a card can be both a heart and a jack. What is the probability of drawing a heart or a jack?
+
+$P(H \text{ OR } J)=P(H)+P(J)-P(H \text{ AND }J)$ 
+\vspace{3em} 
+
+**Example 2** If $A$ and $B$ are mutually exclusive, $P(A \text{ AND }B)=0$. Let $H=$ the card is a heart and $S=$ the card is a spade. What is the probability that the card is a heart or a spade? 
+
+$P(H \text{ OR } S)=P(H)+P(S)-P(H \text{ AND }S)$ 
+
+## Problems 
+
+\begin{enumerate}[itemsep=2em, topsep=1em]
+\item Carlos plays college soccer. He makes a goal 65 percent of the time he shoots. Carlos is going to attempt two goals in a row in the next game. $A=$ the event Carlos is successful in his first attempt. $P(A)=0.65$. $B=$ the event Carlos is successful on his second attempt. $P(B)=0.65$. Carlos tends to shoot in streaks. The probability that he makes the second goal **given** that he made the first goal is 0.90. 
+\begin{enumerate} 
+\item What is the probability he makes both goals? 
+\vspace{4em}
+\item What is the probability that Carlos makes either the first goal or the second goal? 
+\vspace{4em}
+\item Are $A$ and $B$ independent? 
+\vspace{3em}
+\item Are $A$ and $B$ mutually exclusive? 
+\end{enumerate}
+\item Felicity attends a school in Modesto, CA. The probability that Felicity enrolls in a math class is 0.2 and the probability that she enrolls in a speech class is 0.65. The probability that she enrolls in a math class \textbf{given} that she enrolls in a speech class is 0.25. Let $M=$ math class, $S=$ speech class, and $M|S=$ math given speech. 
+\begin{enumerate}
+\item What is the probability that Felicity enrolls in math and speech? 
+\vspace{3em}
+\item What is the probability that Felicity enrolls in math or speech classes? 
+\vspace{3em}
+\item Are $M$ and $S$ independent? 
+\item Are $M$ and $S$ mutually exclusive (IS $P(M \text{ AND } S)=0$)
+\end{enumerate}
+\end{enumerate}
+
+\newpage
+
+## Homework 
+\begin{enumerate}
+\item On February 28, 2013, a Field Poll Survey reported that 61 percent of California registered voters approved of a law that was about to be passed. Among 18- to 39-year olds (California registered voters), the approval rating was 78 percent. Six in 10 California registered voters said that the upcoming Supreme Court’s ruling about the constitutionality of the law was either very or somewhat important to them. Out of those registered voters who supported the law, 75 percent say the ruling is important to them.
+\begin{itemize}
+\item $C=$ California voters who supported the law. 
+\item $B=$ California registered voters who say the Supreme Court’s ruling about the law is very or somewhat important to
+them 
+\item $A=$ California registered voters who are 18 to 39 years old. 
+\end{itemize} 
+\begin{enumerate}
+\item Find $P(C)$ 
+\item Find $P(B)$ 
+\item Find $P(C|A)$ 
+\item Find $P(B|C)$ 
+\item In words, what is $C|A$? 
+\item In words, what is $B|C$? 
+\item Find $P(C \text{ AND } B)$ 
+\item In words, what is $C \text{ AND } B$? 
+\item Find $P(C \text{ OR } B)$ 
+\item Are $C$ and $B$ mutually exclusive events? 
+\end{enumerate}
+\end{enumerate}

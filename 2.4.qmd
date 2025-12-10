@@ -1,0 +1,24 @@
+---
+title: "2.4 - Box Plots"
+execute: 
+    echo: false
+---
+
+{{< include preamble.qmd >}}
+
+* **Box Plots**, also called **box-and-whisker plots**, give a good graphical image of the concentration of the data. 
+* Also show how far the extreme values are from most of the data. 
+* Constructed using the 5-number summary (min, $Q_1$, median, $Q_3$, and max)
+
+Consider the data set: 1, 1, 2, 2, 4, 6, 6.8, 7.2, 8, 8.3, 9, 10, 10, 11.5
+
+```{r}
+#| fig.height: 2
+
+data <- data.frame(x = c(1, 1, 2, 2, 4, 6, 6.8, 7.2, 8, 8.3, 9, 10, 10, 11.5))
+
+ggplot(data, aes(x = x)) + 
+    geom_boxplot() + 
+    theme_notes()
+```
+

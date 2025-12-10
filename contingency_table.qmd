@@ -1,0 +1,6 @@
+---
+title: "Contingency Table"
+---
+
+{{< include preamble.qmd >}}
+
